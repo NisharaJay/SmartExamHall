@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: ;
+    -webkit-font-smoothing: antialiased;
+}
+
+.md\:margin {
+    margin-top: 600px;
+    margin-left: -100px;
+}
