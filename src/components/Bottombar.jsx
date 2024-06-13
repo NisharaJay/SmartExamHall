@@ -19,15 +19,17 @@ export const Bottombar = () => {
   }, []);
 
   return (
-    <div className="relative flex justify-between items-center bg-[#d9d9d9d9] rounded-xl p-2 mb-1">
-      
+    <div className="relative flex justify-between items-center bg-[#d9d9d9d9] rounded-xl p-1 mb-1">
       <div className="flex justify-between">
-          <h1 className="text-[17px] text-center font-semibold pl-2 pr-3 text-gray-700 ">
-            {dateTime.toLocaleDateString()}
-          </h1>
-        </div>
-        <div className="flex justify-between pr-2">
-        <FaCalendar className="h-12 ml-3 cursor-pointer" onClick={handleCalendarClick} />
+        <h1 className="text-[17px] text-center font-semibold pl-2 pr-3 text-gray-700 ">
+          {dateTime.toLocaleDateString()}
+        </h1>
+      </div>
+      <div className="flex justify-between pr-2">
+        <FaCalendar
+          className="h-12 ml-3 cursor-pointer"
+          onClick={handleCalendarClick}
+        />
       </div>
       {isCalendarOpen && (
         <div className="absolute bottom-full right-0 mb-2 pr-2 z-8">
@@ -35,7 +37,7 @@ export const Bottombar = () => {
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             inline
-            className="mr-3" 
+            className="mr-3"
           />
         </div>
       )}
