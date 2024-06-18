@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Home from "./components/Home";
 
 function StudentForm() {
   const [formData, setFormData] = useState({
@@ -59,14 +58,7 @@ function StudentForm() {
     });
   };
 
-  const [showHome, setShowHome] = useState(false);
-
-  const handleBackToHomeClick = () => {
-    setShowHome(true);
-  };
-  if (showHome) {
-    return <Home />;
-  }
+  
   return (
     <div>
       <div className="max-w-3xl mx-auto p-6 bg-gray-200 rounded-lg shadow-lg">
@@ -162,17 +154,11 @@ function StudentForm() {
             type="submit"
             className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 ml-[630px] focus:outline-none focus:shadow-outline"
           >
-            Submit
+            Register
           </button>
         </form>
       </div>
-      <button
-        type="button"
-        onClick={handleBackToHomeClick}
-        className="fixed bottom-20 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 focus:outline-none focus:shadow-outline"
-      >
-        Back to Home
-      </button>
+      
     </div>
   );
 }
