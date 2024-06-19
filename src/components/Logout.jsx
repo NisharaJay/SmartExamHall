@@ -1,10 +1,10 @@
 import React from "react";
+import Login from "../Login";
 
 const Logout = () => {
   return (
     <div>
-      <h1>Logout Page</h1>
-  
+      <Login />
     </div>
   );
 };

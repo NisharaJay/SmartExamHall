@@ -6,7 +6,7 @@ import StudentManagement from "./StudentManagement";
 import ExamSchedule from "./ExamSchedule";
 import HallConfiguration from "./HallConfiguration";
 import Settings from "./Settings";
-import Logout from "./Logout";
+
 import {
   FaHome,
   FaCalendar,
@@ -18,7 +18,7 @@ import {
   FaDesktop,
 } from "react-icons/fa";
 
-export const Sidebar = () => {
+export const Sidebar = ({ onLogout }) => {
   const [open, setOpen] = useState(true);
   const [activePage, setActivePage] = useState("Home");
 
@@ -27,7 +27,11 @@ export const Sidebar = () => {
   };
 
   const handleMenuClick = (title) => {
-    setActivePage(title);
+    if (title === "Logout") {
+      onLogout(); // Call the logout handler passed from App.js
+    } else {
+      setActivePage(title);
+    }
   };
 
   const Menus = [
@@ -50,7 +54,7 @@ export const Sidebar = () => {
   ];
   const Menu = [
     { title: "Settings", icon: <FaCog />, component: <Settings /> },
-    { title: "Logout", icon: <FaSignOutAlt />, component: <Logout /> },
+    { title: "Logout", icon: <FaSignOutAlt />, component: null },
   ];
 
   return (

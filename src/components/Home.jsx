@@ -17,6 +17,7 @@ const Home = () => {
     setCurrentForm(formName);
   };
 
+  
   const renderForm = () => {
     switch (currentForm) {
       case "register":
