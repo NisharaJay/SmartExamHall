@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StudentForm from "../StudentForm";
 import { FingerprintInputForm } from "./FingerprintInputForm";
-import Hall from '../Hall';
+
 
 import {
   FaCalendarDay,
