@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+//x//
 const Hall = ({ studentName, assignedHall }) => {
   const [selectedHall, setSelectedHall] = useState(null);
 
