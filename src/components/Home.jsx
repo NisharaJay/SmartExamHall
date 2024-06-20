@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import StudentForm from "../StudentForm";
 import { FingerprintInputForm } from "./FingerprintInputForm";
+import Hall from '../Hall';
+
 import {
   FaCalendarDay,
   FaIdBadge,
@@ -22,8 +24,9 @@ const Home = () => {
     switch (currentForm) {
       case "register":
         return <StudentForm />;
-        case "assign":
-          return <FingerprintInputForm />;
+      case "assign":
+        return <FingerprintInputForm />;
+        
       
       default:
         return null;
@@ -75,7 +78,9 @@ const Home = () => {
             <div className="text-center text-black">
               <FaClipboardList className="text-5xl pb-3" />
             </div>
-            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase">
+            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase"
+           
+            >
               <div className="text-center text-xl">Hall Assignment</div>
             </button>
           </div>

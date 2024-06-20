@@ -17,7 +17,7 @@ export const Navbar = ({ activePage }) => {
           Dashboard /{" "}
           <span className="text-gray-500 text-[15px]">{activePage}</span>
         </h1>
-        <h1 className="text-lg font-semibold pl-2"></h1>
+        
         <div className="relative">
           <input
             type="text"
