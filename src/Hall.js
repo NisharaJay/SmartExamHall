@@ -16,8 +16,8 @@ const Hall = ({ studentName, assignedHall }) => {
             href={`/hall/${hallNumber}`} // URL for the specific hall page
             key={hallNumber}
             onClick={() => handleHallClick(hallNumber)}
-            className={`p-6 rounded-lg shadow-lg flex items-center justify-center h-64 cursor-pointer ${
-              assignedHall === hallNumber ? 'bg-blue-200' : 'bg-white'
+            className={`p-6 rounded-lg shadow-lg flex items-center justify-center h-52 cursor-pointer ${
+              assignedHall === hallNumber ? 'bg-blue-200' : 'bg-gray-200'
             }`}
           >
             <div className="text-center">

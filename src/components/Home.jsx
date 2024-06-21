@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import StudentForm from "../StudentForm";
 import { FingerprintInputForm } from "./FingerprintInputForm";
-
+import  Hall  from "../Hall";
+import  ExamADD  from "../ExamADD";
 
 import {
   FaCalendarDay,
@@ -26,7 +27,10 @@ const Home = () => {
         return <StudentForm />;
       case "assign":
         return <FingerprintInputForm />;
-        
+      case "hall":
+        return <Hall />;
+      case "exam":
+        return <ExamADD />;
       
       default:
         return null;
@@ -79,7 +83,7 @@ const Home = () => {
               <FaClipboardList className="text-5xl pb-3" />
             </div>
             <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase"
-           
+           onClick={() => handleButtonClick("hall")}
             >
               <div className="text-center text-xl">Hall Assignment</div>
             </button>
@@ -89,7 +93,9 @@ const Home = () => {
             <div className="text-center text-black">
               <FaLaptop className="text-5xl pb-3" />
             </div>
-            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase">
+            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase"
+            onClick={() => handleButtonClick("exam")}
+            >
               <div className="text-center text-xl">Add Exam</div>
             </button>
           </div>
