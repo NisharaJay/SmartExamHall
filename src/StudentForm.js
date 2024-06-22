@@ -61,7 +61,7 @@ function StudentForm() {
   
   return (
     <div>
-      <div className="max-w-3xl mx-auto p-6 bg-gray-200 rounded-lg shadow-lg">
+      <div className="max-w-3xl mx-auto p-6 bg-gray-200 rounded-lg shadow-lg mb-2 mt-[-5px]">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -76,7 +76,7 @@ function StudentForm() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
               required
             />
           </div>
@@ -93,7 +93,7 @@ function StudentForm() {
               name="stu_id"
               value={formData.stu_id}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
               required
             />
           </div>
@@ -109,7 +109,7 @@ function StudentForm() {
               name="degree"
               value={formData.degree}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
               required
             >
               <option value="IT">IT</option>
@@ -130,7 +130,7 @@ function StudentForm() {
               name="batch"
               value={formData.batch}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
               required
             />
           </div>

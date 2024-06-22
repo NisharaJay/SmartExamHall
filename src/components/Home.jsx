@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import StudentForm from "../StudentForm";
 import { FingerprintInputForm } from "./FingerprintInputForm";
-
+import  Hall  from "../Hall";
+import  ExamADD  from "../ExamADD";
 
 import {
   FaCalendarDay,
@@ -26,7 +27,10 @@ const Home = () => {
         return <StudentForm />;
       case "assign":
         return <FingerprintInputForm />;
-        
+      case "hall":
+        return <Hall />;
+      case "exam":
+        return <ExamADD />;
       
       default:
         return null;
@@ -34,7 +38,7 @@ const Home = () => {
   };
 
   return (
-    <div className="p-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="p-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
       {currentForm ? (
         <div className="col-span-full">
           <button
@@ -47,7 +51,7 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-xl shadow">
             <div className="text-center font-semibold text-xl">
               Total Students <h1 className="text-3xl">xxx</h1>
             </div>
@@ -62,7 +66,7 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#114960] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#114960] p-4 rounded-xl shadow">
             <div className="text-center text-white">
               <FaDesktop className="text-5xl pb-3" />
             </div>
@@ -74,27 +78,29 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-xl shadow">
             <div className="text-center text-black">
               <FaClipboardList className="text-5xl pb-3" />
             </div>
             <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase"
-           
+           onClick={() => handleButtonClick("hall")}
             >
               <div className="text-center text-xl">Hall Assignment</div>
             </button>
           </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-xl shadow">
             <div className="text-center text-black">
               <FaLaptop className="text-5xl pb-3" />
             </div>
-            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase">
+            <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase"
+            onClick={() => handleButtonClick("exam")}
+            >
               <div className="text-center text-xl">Add Exam</div>
             </button>
           </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#114960] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#114960] p-4 rounded-xl shadow">
             <div className="text-center text-white">
               <FaCalendarDay className="text-5xl pb-3" />
             </div>
@@ -103,7 +109,7 @@ const Home = () => {
             </button>
           </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-lg shadow">
+          <div className="flex flex-col justify-center items-center bg-[#d9d9d9d9] p-4 rounded-xl shadow">
             <div className="text-center font-semibold text-xl">Upcoming Exams</div>
             <button className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 mb-3 uppercase">
               <div className="text-center">
