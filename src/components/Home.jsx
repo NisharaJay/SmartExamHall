@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StudentForm from "../StudentForm";
 import { FingerprintInputForm } from "./FingerprintInputForm";
 import ExamADD from "../ExamADD";
@@ -8,6 +8,11 @@ import { FaCalendarDay, FaIdBadge, FaDesktop, FaLaptop } from "react-icons/fa";
 
 const Home = () => {
   const [currentForm, setCurrentForm] = useState(null);
+  const [studentCount, setStudentCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch the student count from the backend
+  }, []);
 
   const handleButtonClick = (formName) => {
     setCurrentForm(formName);
@@ -44,7 +49,8 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full px-4 lg:px-32">
           <div className="flex flex-col justify-center items-center bg-[#d9d9d9] p-6 rounded-xl shadow w-full">
             <div className="text-center font-semibold text-xl mb-4">
-              Total Students <h1 className="text-3xl">xxx</h1>
+              Total Students
+              <h1 className="text-3xl">{studentCount}</h1>
             </div>
             <button
               className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 uppercase"
