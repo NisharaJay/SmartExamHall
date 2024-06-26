@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
+
+  import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import AddToCalendar from 'react-add-to-calendar';
 
 const ExamSchedule = () => {
-  const [exams, setExams] = useState([
-    { id: 1, date: new Date(2024, 6, 1, 10, 0), subject: 'Mathematics', duration: 90, instructions: 'Bring your own calculator.' },
-    { id: 2, date: new Date(2024, 6, 2, 14, 0), subject: 'History', duration: 120, instructions: 'No materials allowed.' },
-    { id: 3, date: new Date(2024, 6, 3, 9, 0), subject: 'Science', duration: 60, instructions: 'Lab coats required.' }
-  ]);
+  const [exams, setExams] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
-    // Simulating fetching data from API
-    const mockExams = [
-      { id: 1, date: new Date(2024, 6, 1, 10, 0), subject: 'Mathematics', duration: 90, instructions: 'Bring your own calculator.' },
-      { id: 2, date: new Date(2024, 6, 2, 14, 0), subject: 'History', duration: 120, instructions: 'No materials allowed.' },
-      { id: 3, date: new Date(2024, 6, 3, 9, 0), subject: 'Science', duration: 60, instructions: 'Lab coats required.' }
-    ];
-
-    // Setting state with mock data (replace with actual fetch call)
-    setExams(mockExams);
+    // Fetching data from API
+    fetch('/api/exams')
+      .then(response => response.json())
+      .then(data => setExams(data))
+      .catch(error => console.error('Error fetching exams:', error));
   }, []);
 
   const handleDateChange = (date) => {
@@ -30,7 +23,7 @@ const ExamSchedule = () => {
   return (
     <div style={{ backgroundColor: '#114960' }} className="min-h-screen flex items-center justify-center">
       <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-lg border-4">
-        <h1 className="text-3xl font-semibold text-center text-blue mb-6">Exam Schedule</h1>
+        <h1 className="text-3xl font-semibold text-center text-blue-700 mb-6">Exam Schedule</h1>
 
         {/* Table displaying exam schedule */}
         <div className="overflow-x-auto mx-8">
@@ -47,18 +40,18 @@ const ExamSchedule = () => {
             <tbody>
               {exams.map((exam) => (
                 <tr key={exam.id}>
-                  <td className="py-3 px-6 border-b">{exam.date.toLocaleString()}</td>
-                  <td className="py-3 px-6 border-b">{exam.subject}</td>
-                  <td className="py-3 px-6 border-b">{exam.duration} minutes</td>
-                  <td className="py-3 px-6 border-b">{exam.instructions}</td>
-                  <td className="py-3 px-6 border-b">
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{new Date(exam.date).toLocaleString()}</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.subject}</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.duration} minutes</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.instructions}</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">
                     <AddToCalendar
                       event={{
                         title: exam.subject,
                         description: exam.instructions,
                         location: 'Exam Hall',
-                        startTime: exam.date,
-                        endTime: new Date(exam.date.getTime() + exam.duration * 60000)
+                        startTime: new Date(exam.date),
+                        endTime: new Date(new Date(exam.date).getTime() + exam.duration * 60000)
                       }}
                     />
                   </td>
@@ -78,3 +71,5 @@ const ExamSchedule = () => {
 };
 
 export default ExamSchedule;
+
+
