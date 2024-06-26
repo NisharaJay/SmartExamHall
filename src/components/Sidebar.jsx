@@ -146,7 +146,8 @@ export const Sidebar = ({ onLogout }) => {
       <div className="flex-1 flex flex-col p-2 overflow-hidden">
         <Navbar activePage={activePage} />
         <div className="flex-1 mt-2 overflow-y-auto">
-          {Menus.map((menu) => {
+          {/* Render active page component */}
+          {Menus.concat(Menu).map((menu) => {
             if (activePage === menu.title) {
               return menu.component;
             }

@@ -44,7 +44,7 @@ const ExamADD = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-6 p-6 bg-gray-200 rounded-lg shadow-lg">
+    <div className="p-6 ml-5 mr-5 mt-12 bg-gray-200 rounded-lg shadow-lg">
       <form onSubmit={handleSubmit}>
         {/* Exam Module */}
         <div className="mb-4">
