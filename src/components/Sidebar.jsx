@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "./Navbar";
 import { Bottombar } from "./Bottombar";
 import Home from "./Home";
 import StudentManagement from "./StudentManagement";
 import ExamSchedule from "./ExamSchedule";
-import HallConfiguration from "./HallConfiguration";
+import HallConfiguration from "./ExamMode";
 import Settings from "./Settings";
 
 import {
   FaHome,
   FaCalendar,
-  FaList,
   FaUserGraduate,
   FaSignOutAlt,
   FaCog,
@@ -19,7 +18,7 @@ import {
 } from "react-icons/fa";
 
 export const Sidebar = ({ onLogout }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(window.innerWidth >= 640);
   const [activePage, setActivePage] = useState("Home");
 
   const toggleSidebar = () => {
@@ -37,14 +36,14 @@ export const Sidebar = ({ onLogout }) => {
   const Menus = [
     { title: "Home", icon: <FaHome />, component: <Home /> },
     {
+      title: "Exam Mode",
+      icon: <FaDesktop />,
+      component: <HallConfiguration />,
+    },
+    {
       title: "Student Management",
       icon: <FaUserGraduate />,
       component: <StudentManagement />,
-    },
-    {
-      title: "Hall Configuration",
-      icon: <FaList />,
-      component: <HallConfiguration />,
     },
     {
       title: "Exam Schedule",
@@ -52,26 +51,43 @@ export const Sidebar = ({ onLogout }) => {
       component: <ExamSchedule />,
     },
   ];
+
   const Menu = [
     { title: "Settings", icon: <FaCog />, component: <Settings /> },
     { title: "Logout", icon: <FaSignOutAlt />, component: null },
   ];
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setOpen(false);
+      } else {
+        setOpen(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <div
         className={`${
           open ? "w-72" : "w-20"
-        } bg-[#114960] p-4 m-2 rounded-xl pt-8 relative duration-300`}
+        } bg-[#114960] p-4 m-2 rounded-xl pt-5 relative duration-300 md:static`}
         style={{ overflow: "hidden" }}
       >
         <FaArrowLeft
-          className={`absolute cursor-pointer right-2 top-2 text-2xl text-white border-2 p-1 rounded-full
-            ${!open && "rotate-180"}`}
+          className={`absolute top-4 cursor-pointer text-2xl text-white border-2 p-1 rounded-full transition-transform duration-300 ${
+            open ? "left-[263px]" : " top-4 rotate-180"
+          }`}
           onClick={toggleSidebar}
         />
         <FaDesktop
-          className={`cursor-pointer duration-500 text-white mt-2 ml-1 ${
+          className={`cursor-pointer duration-500 text-white mt-6 ml-1 ${
             open ? "rotate-[360deg] w-10 h-10" : "w-10 h-10"
           }`}
         />
@@ -127,7 +143,7 @@ export const Sidebar = ({ onLogout }) => {
           </div>
         </div>
       </div>
-      <div className="h-screen flex flex-col flex-1 p-2">
+      <div className="flex-1 flex flex-col p-2 overflow-hidden">
         <Navbar activePage={activePage} />
         <div className="flex-1 mt-2 overflow-y-auto">
           {Menus.map((menu) => {
@@ -137,8 +153,8 @@ export const Sidebar = ({ onLogout }) => {
             return null;
           })}
         </div>
-        <div>
-          <Bottombar/>
+        <div className="mt-2">
+          <Bottombar />
         </div>
       </div>
     </div>

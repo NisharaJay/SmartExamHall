@@ -15,10 +15,6 @@ const StudentManagement = () => {
     setRelevantData([]);
   };
 
-  const formatDate = (date) => {
-    return date.toISOString().split("T")[0];
-  };
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -32,39 +28,45 @@ const StudentManagement = () => {
   };
 
   return (
-    <div className="flex flex-col bg-[#D9D9D9] rounded-lg p-8 m-2">
-      <div className="flex items-center space-x-4 mb-4 bg-gray-200 rounded-lg p-4">
-        <div className="flex flex-col mr-3">
-          <label className="mb-2 font-bold">Date:</label>
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            className="ring-1 ring-gray-300 rounded-md px-4 mb-2 py-2 outline-none focus:ring-2 focus:ring-gray-300"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-2 font-bold">Degree:</label>
-          <select
-            value={selectedDegree}
-            onChange={handleDegreeChange}
-            className="ring-1 ring-gray-300 rounded-md px-4 mb-2 py-2 outline-none focus:ring-2 focus:ring-gray-300"
-          >
-            <option value="IT">IT</option>
-            <option value="ITM">ITM</option>
-            <option value="AI">AI</option>
-          </select>
-        </div>
-        <div className="flex flex-col">
-          <button 
-            onClick={handleSearchClick} 
-            className="mt-6 ml-3 p-2 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg px-6 py-2 uppercase"
-          >
-            Search
-          </button>
+    <div className="flex flex-wrap flex-col bg-[#D9D9D9] rounded-lg p-4 m-2">
+      <div className="flex flex-col w-full">
+        <div className="flex justify-center items-center mb-5">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center p-4 rounded-2xl bg-[#114960] text-black text-[16px] w-full sm:w-auto">
+            <div className="flex flex-col md:flex-row md:items-center mb-4 md:mb-0 w-full md:w-auto">
+              <label className="mb-2 md:mb-0 font-bold text-white mr-4">Date:</label>
+              <div className="w-full md:w-auto">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  className="w-full ring-1 ring-gray-300 rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-gray-300"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center mb-4 md:mb-0 w-full md:w-auto">
+              <label className="mb-2 ml-4 md:mb-0 font-bold text-white mr-4">Degree:</label>
+              <select
+                value={selectedDegree}
+                onChange={handleDegreeChange}
+                className="w-full md:w-auto ring-1 ring-gray-300 rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-gray-300 sm:mr-8"
+              >
+                <option value="IT">IT</option>
+                <option value="ITM">ITM</option>
+                <option value="AI">AI</option>
+              </select>
+            </div>
+
+            <button
+              onClick={handleSearchClick}
+              className="p-2 bg-gray-200 hover:bg-gray-400 text-black font-bold rounded-lg px-6 py-2 uppercase"
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
       <div className="flex flex-col w-full p-2">
-        <h2 className="mb-4 font-bold text-lg">Attendance</h2>
+        <h2 className="mb-4 font-bold text-[20px]">Attendance</h2>
         <div className="bg-white shadow-lg p-5 rounded-lg">
           {relevantData.length > 0 ? (
             <table className="min-w-full bg-white border">
