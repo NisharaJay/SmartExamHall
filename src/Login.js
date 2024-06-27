@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import img from "./login.png";
+import { loginAdmin } from "./requests/admin";
+import Cookies from 'js-cookie';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -7,11 +9,7 @@ const Login = ({ onLogin }) => {
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [loginError, setLoginError] = useState('');
 
-  // Hardcoded credentials
-  const Email = 'admin';
-  const Password = '123';
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     let formIsValid = true;
     let newErrors = { email: '', password: '' };
@@ -19,9 +17,6 @@ const Login = ({ onLogin }) => {
 
     if (!email) {
       newErrors.email = 'Email is required';
-      formIsValid = false;
-    } else if (email !== Email) {
-      newErrors.email = 'Invalid email';
       formIsValid = false;
     }
 
@@ -34,18 +29,34 @@ const Login = ({ onLogin }) => {
 
     if (formIsValid) {
       // Check hardcoded credentials
-      if (email === Email && password === Password) {
-        console.log('Form submitted:', { email, password });
-        // Reset form
-        setEmail('');
-        setPassword('');
-        setErrors({ email: '', password: '' });
-        onLogin();
-      } else {
-        setLoginError('Invalid email or password');
-      }
+      if (formIsValid) {
+        // Check hardcoded credentials
+        // if (email === Email && password === Password) {
+        //   console.log('Form submitted:', { email, password });
+        //   // Reset form
+  
+         
+        //   setEmail('');
+        //   setPassword('');
+        //   setErrors({ email: '', password: '' });
+        //   onLogin();
+        // } else {
+        //   setLoginError('Invalid email or password');
+        // }
+        try {
+          const res = await loginAdmin(email,password)
+          if (res===200) {
+            
+            // onLogin(true)
+          }else{
+            console.log(res);
+          }
+       } catch (error) {
+         console.log(error);
     }
   };
+}
+  }
 
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0 bg-gray-200">

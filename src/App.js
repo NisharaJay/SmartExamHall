@@ -4,7 +4,7 @@ import Login from "./Login";
 import { Sidebar } from "./components/Sidebar";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Initially assume user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initially assume user is logged in
 
   const handleLogout = () => {
     setIsLoggedIn(false); // Set logged out state
