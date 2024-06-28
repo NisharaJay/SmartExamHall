@@ -47,7 +47,7 @@ const Login = ({ onLogin }) => {
           const res = await loginAdmin(email,password)
           if (res===200) {
             
-            // onLogin(true)
+            onLogin(true)
           }else{
             console.log(res);
           }
