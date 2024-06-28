@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { setMode } from './requests/fingerprint';
 
 function StudentForm() {
   const [formData, setFormData] = useState({
@@ -21,12 +22,13 @@ function StudentForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://7cb1-2407-c00-c003-5ffe-f10a-7b8e-5ae5-4b62.ngrok-free.app/api/v1/students', {
+      const response = await fetch('https://e0d2-2401-dd00-10-20-38fd-4990-5ba2-38d8.ngrok-free.app/api/v1/students', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials:'include'
       });
 
       if (response.ok) {
@@ -37,8 +39,9 @@ function StudentForm() {
           stu_id: '',
           degree: 'IT',
           batch: '',
-          fingerprint: 1234
         });
+        const res = await setMode()
+        console.log(res);
       } else {
         console.error('Failed to submit form data');
       }
