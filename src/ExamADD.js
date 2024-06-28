@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const ExamADD = () => {
   const [formData, setFormData] = useState({
-    examModule: '',
-    examDate: '',
-    examDuration: '',
+    module: '',
+    date: '',
+    duration: '',
   });
 
   const handleChange = (e) => {
@@ -19,24 +19,27 @@ const ExamADD = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://example.com/api/add-exam', {
+      const response = await fetch('https://e0d2-2401-dd00-10-20-38fd-4990-5ba2-38d8.ngrok-free.app/api/v1/exams', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials:'include'
       });
 
       if (response.ok) {
         console.log('Form data successfully submitted!');
+
+        
         // Reset form after submission if needed
         setFormData({
-          examModule: '',
-          examDate: '',
-          examDuration: '',
+          module: '',
+          date: '',
+          duration: '',
         });
       } else {
-        console.error('Failed to submit form data');
+        console.error('Failed to submit form data',response);
       }
     } catch (error) {
       console.error('Error submitting form data:', error);
@@ -53,9 +56,9 @@ const ExamADD = () => {
           </label>
           <input
             type="text"
-            id="examModule"
-            name="examModule"
-            value={formData.examModule}
+            id="module"
+            name="module"
+            value={formData.module}
             onChange={handleChange}
             className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
             required
@@ -69,9 +72,9 @@ const ExamADD = () => {
           </label>
           <input
             type="date"
-            id="examDate"
-            name="examDate"
-            value={formData.examDate}
+            id="date"
+            name="date"
+            value={formData.date}
             onChange={handleChange}
             className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
             required
@@ -85,9 +88,9 @@ const ExamADD = () => {
           </label>
           <input
             type="number"
-            id="examDuration"
-            name="examDuration"
-            value={formData.examDuration}
+            id="duration"
+            name="duration"
+            value={formData.duration}
             onChange={handleChange}
             className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
             required
