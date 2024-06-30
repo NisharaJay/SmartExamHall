@@ -11,18 +11,16 @@ export const Navbar = ({ activePage }) => {
 
   return (
     <div>
-      <div className="flex justify-between items-center bg-[#d9d9d9d9] rounded-xl p-2 mt-1">
+      <div className="flex justify-between items-center bg-[#d9d9d9] rounded-xl p-2 mt-2 mr-2">
         <h1 className="text-[17px] font-semibold pl-2 text-gray-700">
           Dashboard /{" "}
           <span className="text-gray-500 text-[15px]">{activePage}</span>
         </h1>
-        
-        
       </div>
-      <div className="flex justify-between items-center bg-[#d9d9d9d9] rounded-xl p-2 mt-3">
+      <div className="flex justify-between items-center bg-[#d9d9d9] rounded-xl p-2 mt-3 mr-2">
         <div className="flex justify-between">
           <h1 className="text-[17px] text-center font-semibold pl-2 pr-3 text-gray-700 ">
-            
+            {activePage}
           </h1>
         </div>
         <div className="relative">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import img from "./login.png";
 import { loginAdmin } from "./requests/admin";
-import Cookies from 'js-cookie';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -28,21 +27,8 @@ const Login = ({ onLogin }) => {
     setErrors(newErrors);
 
     if (formIsValid) {
-      // Check hardcoded credentials
       if (formIsValid) {
-        // Check hardcoded credentials
-        // if (email === Email && password === Password) {
-        //   console.log('Form submitted:', { email, password });
-        //   // Reset form
-  
-         
-        //   setEmail('');
-        //   setPassword('');
-        //   setErrors({ email: '', password: '' });
-        //   onLogin();
-        // } else {
-        //   setLoginError('Invalid email or password');
-        // }
+        
         try {
           const res = await loginAdmin(email,password)
           if (res===200) {
