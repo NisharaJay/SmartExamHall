@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getAttendence } from "../requests/exams";
 
 const StudentManagement = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -13,6 +14,13 @@ const StudentManagement = () => {
 
     // Clear the relevant data while fetching new data
     setRelevantData([]);
+    try {
+      const res = await getAttendence(selectedDegree,selectedDate)
+      console.log(res);
+      setRelevantData(res)
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDateChange = (date) => {
@@ -74,13 +82,17 @@ const StudentManagement = () => {
                 <tr>
                   <th className="py-2 px-4 border-b">Name</th>
                   <th className="py-2 px-4 border-b">Index No</th>
+                  <th className="py-2 px-4 border-b">Exam</th>
+                  <th className="py-2 px-4 border-b">PC number</th>
                 </tr>
               </thead>
               <tbody>
-                {relevantData.map((student, index) => (
+                {relevantData.map((data, index) => (
                   <tr key={index}>
-                    <td className="py-2 px-4 border-b">{student.name}</td>
-                    <td className="py-2 px-4 border-b">{student.indexNo}</td>
+                    <td className="py-2 px-4 border-b">{data.student.name}</td>
+                    <td className="py-2 px-4 border-b">{data.student.studentId}</td>
+                    <td className="py-2 px-4 border-b">{data.exam.module}</td>
+                    <td className="py-2 px-4 border-b">{data.pc.pcId}</td>
                   </tr>
                 ))}
               </tbody>
