@@ -19,9 +19,6 @@ export const Navbar = ({ activePage }) => {
       </div>
       <div className="flex justify-between items-center bg-[#d9d9d9] rounded-xl p-2 mt-3 mr-2">
         <div className="flex justify-between">
-          <h1 className="text-[17px] text-center font-semibold pl-2 pr-3 text-gray-700 ">
-            {activePage}
-          </h1>
         </div>
         <div className="relative">
           <h1 className="text-[17px] text-center font-semibold pl-2 pr-3 text-gray-700 ">

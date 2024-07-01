@@ -6,7 +6,31 @@ import { Bottombar } from "./Bottombar";
 
 const MainLayout = ({ onLogout }) => {
   const location = useLocation();
-  const activePage = location.pathname.split("/")[1] || "home";
+  const getActivePageName = (pathname) => {
+    switch (pathname) {
+      case "/home":
+        return "Home";
+      case "/home/exam":
+        return "Add Exam";
+      case "/home/register":
+        return "Register Student";
+      case "/home/assign":
+        return "Assign PC";
+      case "/home/schedule":
+        return "Exam Schedule";
+      case "/student-management":
+        return "Student Management";
+      case "/exam-schedule":
+        return "Exam Schedule";
+      case "/settings":
+        return "Settings";
+      default:
+        return "Dashboard";
+    }
+  };
+
+  const activePage = getActivePageName(location.pathname);
+
 
   return (
     <div className="flex h-screen">

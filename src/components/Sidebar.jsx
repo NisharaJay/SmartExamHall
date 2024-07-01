@@ -24,6 +24,7 @@ const Sidebar = ({ onLogout }) => {
       navigate("/confirm-enter-exam-mode");
     } else {
       setActivePage(path);
+      navigate(`/${path}`);
     }
   };
 
@@ -85,9 +86,9 @@ const Sidebar = ({ onLogout }) => {
                   onClick={() => handleMenuClick(menu.title, menu.path)}
                 >
                   <span className="pl-1.5 text-lg">{menu.icon}</span>
-                  <Link to={`/${menu.path}`} className={`${!open && "hidden"} origin-left duration-200`}>
+                  <span className={`${!open && "hidden"} origin-left duration-200`}>
                     {menu.title}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -102,9 +103,9 @@ const Sidebar = ({ onLogout }) => {
                 >
                   <span className="pl-1.5 text-lg">{menu.icon}</span>
                   {menu.path ? (
-                    <Link to={`/${menu.path}`} className={`${!open && "hidden"} origin-left duration-200`}>
+                    <span className={`${!open && "hidden"} origin-left duration-200`}>
                       {menu.title}
-                    </Link>
+                    </span>
                   ) : (
                     <span className={`${!open && "hidden"} origin-left duration-200`}>
                       {menu.title}
