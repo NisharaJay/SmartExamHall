@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Login from "./Login";
 
 import { Sidebar } from "./components/Sidebar";
+import AuthChecker from "./components/AuthComponent";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Initially assume user is logged in
@@ -15,6 +16,7 @@ function App() {
   };
   return (
     <div>
+    <AuthChecker setIsLoggedIn={setIsLoggedIn}/>
       {isLoggedIn ? (
         <Sidebar onLogout={handleLogout} /> // Pass the logout handler to Sidebar
       ) : (
