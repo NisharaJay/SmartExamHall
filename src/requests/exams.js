@@ -1,8 +1,8 @@
 
 
 export const getAttendence = async (degree,date)=>{
-    const url = 'https://6807-2402-d000-a400-7697-11e6-2431-57a4-a6de.ngrok-free.app/api/v1/attendence';
-  
+    const url = 'https://889d-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/attendence';
+
     const requestBody = {
       degree: degree,
       date: date

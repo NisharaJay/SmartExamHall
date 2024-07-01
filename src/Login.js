@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import img from "./login.png";
 import { loginAdmin } from "./requests/admin";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
+  const navigate= useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
@@ -32,8 +34,8 @@ const Login = ({ onLogin }) => {
         try {
           const res = await loginAdmin(email,password)
           if (res===200) {
+            navigate('/')
             
-            onLogin(true)
           }else{
             console.log(res);
           }

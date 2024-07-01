@@ -1,5 +1,5 @@
 
-const localapi='https://6807-2402-d000-a400-7697-11e6-2431-57a4-a6de.ngrok-free.app'
+const localapi='https://889d-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app'
 
 export const loginAdmin = async(userId,password)=>{
     try {
@@ -18,7 +18,7 @@ export const loginAdmin = async(userId,password)=>{
         }
     
         const data = response.status;
-        console.log(data);
+        // console.log(data);
         return data;
       } catch (error) {
         console.error('Error:', error);
@@ -31,15 +31,22 @@ export const checkSession=async()=>{
   try {
     const response = await fetch(`${localapi}/api/v1/admin/checkSession`, {
       method: 'GET',
+      headers: {
+            'Content-Type': 'application/json',
+            "ngrok-skip-browser-warning": "69420"
+          },
       credentials: 'include' // Include cookies in the request
     });
 
     if (response.status === 401) {
+      // console.log(response);
       throw new Error('Session expired');
     }
 
     if (response.status === 200) {
+      // console.log(response);
       const data = await response.json();
+      // console.log(data.valid);
       return data.valid;
     }else{
       throw new Error(`${response.status}: ${response}`)
