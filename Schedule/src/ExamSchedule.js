@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+  import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import AddToCalendar from 'react-add-to-calendar';
@@ -20,9 +21,10 @@ const ExamSchedule = () => {
   };
 
   return (
-    <div className="flex bg-[#114960] items-center justify-center p-4 rounded-xl m-3">
-      <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-xl border-4">
-        <h1 className="text-3xl font-semibold text-center text-black mb-6">Exam Schedule</h1>
+    <div style={{ backgroundColor: '#114960' }} className="min-h-screen flex items-center justify-center">
+      <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-lg border-4">
+        <h1 className="text-3xl font-semibold text-center text-blue-700 mb-6">Exam Schedule</h1>
+
         {/* Table displaying exam schedule */}
         <div className="overflow-x-auto mx-8">
           <table className="min-w-full bg-white border border-gray-200">

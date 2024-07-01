@@ -69,9 +69,9 @@ const Settings = () => {
   };
 
   return (
-    <div className="bg-[#114960] p-4 m-3 flex flex-wrap items-center justify-center rounded-xl ml-5 mr-5">
-      <div className="max-w-6xl w-full mx-auto p-6 bg-white rounded-xl border border-gray-300 shadow-md">
-       
+    <div style={{ backgroundColor: '#114960' }} className="min-h-screen flex items-center justify-center">
+      <div className="max-w-6xl w-full mx-auto p-6 bg-white rounded-lg border border-gray-300 shadow-md">
+        <h1 className="text-3xl font-bold mb-4 text-center text-black-700">Settings</h1>
 
         {/* Add/Remove Students */}
         <div className="mb-6">
@@ -86,7 +86,7 @@ const Settings = () => {
             />
             <button
               onClick={handleAddStudent}
-              className="bg-[#114960] font-bold text-white p-2 rounded-lg"
+              className="bg-blue-500 text-white p-2 rounded"
             >
               Add Student
             </button>
@@ -126,7 +126,7 @@ const Settings = () => {
           <p>If you need help, please contact support.</p>
           <button
             onClick={handleSubmitTicket}
-            className="bg-[#114960] font-bold text-white p-2 rounded-lg mt-4"
+            className="bg-blue-500 text-white p-2 rounded mt-2"
           >
             Submit a Ticket
           </button>

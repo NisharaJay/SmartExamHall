@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import AddToCalendar from 'react-add-to-calendar';
@@ -18,11 +19,24 @@ const ExamSchedule = () => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  const navigate = useNavigate();
 
+  const handleBack = () => {
+    navigate('/home');
+  };
   return (
+    <div>
+      <button
+        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold"
+        onClick={handleBack}
+      >
+        Back to Home
+      </button>
+    
     <div className="flex bg-[#114960] items-center justify-center p-4 rounded-xl m-3">
       <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-xl border-4">
         <h1 className="text-3xl font-semibold text-center text-black mb-6">Exam Schedule</h1>
+
         {/* Table displaying exam schedule */}
         <div className="overflow-x-auto mx-8">
           <table className="min-w-full bg-white border border-gray-200">
@@ -64,6 +78,7 @@ const ExamSchedule = () => {
           <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       </div>
+    </div>
     </div>
   );
 };
