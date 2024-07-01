@@ -1,97 +1,80 @@
-import React, { useState, useEffect } from "react";
-import StudentForm from "../StudentForm";
-import { FingerprintInputForm } from "./FingerprintInputForm";
-import ExamADD from "../ExamADD";
-import ExamSchedule from "../ExamSchedule";
-
-import { FaCalendarDay, FaIdBadge, FaDesktop, FaLaptop } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaIdBadge, FaDesktop, FaCalendarDay, FaLaptop } from 'react-icons/fa';
 
 const Home = () => {
-  const [currentForm, setCurrentForm] = useState(null);
-  const [studentCount, setStudentCount] = useState(0);
+  const navigate = useNavigate();
+  const [studentCount, setStudentCount] = useState(0); // State to hold student count
 
   useEffect(() => {
-    // Fetch the student count from the backend
+    // Fetch student count from backend API
+    fetchStudentCount();
   }, []);
 
-  const handleButtonClick = (formName) => {
-    setCurrentForm(formName);
-  };
-
-  const renderForm = () => {
-    switch (currentForm) {
-      case "register":
-        return <StudentForm />;
-      case "assign":
-        return <FingerprintInputForm />;
-      case "schedule":
-        return <ExamSchedule />;
-      case "exam":
-        return <ExamADD />;
-      default:
-        return null;
+  const fetchStudentCount = async () => {
+    try {
+      const response = await fetch('your-backend-api-endpoint');
+      if (!response.ok) {
+        throw new Error('Failed to fetch student count');
+      }
+      const data = await response.json();
+      setStudentCount(data.count); // Assuming your backend returns a count property
+    } catch (error) {
+      console.error('Error fetching student count:', error);
     }
   };
 
+  const handleButtonClick = (path) => {
+    navigate(path);
+  };
+
   return (
-    <div className="p-2 flex flex-col items-center justify-center gap-2 mt-2 w-full">
-      {currentForm ? (
-        <div className="w-full">
+    <div className="flex flex-wrap flex-col items-center justify-center gap-2 mt-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-32">
+        <div className="flex flex-col justify-center items-center bg-[#d9d9d9] p-6 rounded-xl shadow w-[460px]">
+          <div className="text-center font-semibold text-xl mb-4">
+            Total Students
+            <h1 className="text-3xl">{studentCount}</h1>
+          </div>
           <button
-            className="fixed bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 font-bold rounded-lg mb-4 left-[320px]"
-            onClick={() => setCurrentForm(null)}
+            onClick={() => handleButtonClick('/home/register')}
+            className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 uppercase"
           >
-            Back to Home
+            <FaIdBadge className="text-5xl pb-3" />
+            <div className="text-center">Register</div>
           </button>
-          {renderForm()}
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full px-4 lg:px-32">
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9] p-6 rounded-xl shadow w-full">
-            <div className="text-center font-semibold text-xl mb-4">
-              Total Students
-              <h1 className="text-3xl">{studentCount}</h1>
-            </div>
-            <button
-              className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 uppercase"
-              onClick={() => handleButtonClick("register")}
-            >
-              <FaIdBadge className="text-5xl pb-3" />
-              <div className="text-center">Register</div>
-            </button>
-          </div>
 
-          <div className="flex flex-col justify-center items-center bg-[#114960] p-6 rounded-xl shadow w-full">
-            <FaDesktop className="text-5xl pb-3 text-white" />
-            <button
-              className="flex flex-col justify-center items-center w-40 bg-[#d9d9d9] hover:bg-[#757676] text-black font-bold rounded-lg p-6 mt-4 uppercase"
-              onClick={() => handleButtonClick("assign")}
-            >
-              <div className="text-center text-xl">Assign PC</div>
-            </button>
-          </div>
-
-          <div className="flex flex-col justify-center items-center bg-[#114960] p-6 rounded-xl shadow w-full h-[248px]">
-            <FaCalendarDay className="text-5xl pb-3 text-white" />
-            <button
-              className="flex flex-col justify-center items-center w-40 bg-[#d9d9d9] hover:bg-[#757676] text-black font-bold rounded-lg p-6 mt-4 uppercase"
-              onClick={() => handleButtonClick("schedule")}
-            >
-              <div className="text-center text-xl">Exam Schedule</div>
-            </button>
-          </div>
-
-          <div className="flex flex-col justify-center items-center bg-[#d9d9d9] p-6 rounded-xl shadow w-full ">
-            <FaLaptop className="text-5xl pb-3 text-black" />
-            <button
-              className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 uppercase"
-              onClick={() => handleButtonClick("exam")}
-            >
-              <div className="text-center text-xl">Add Exam</div>
-            </button>
-          </div>
+        <div className="flex flex-col justify-center items-center bg-[#114960] p-6 rounded-xl shadow w-full">
+          <FaDesktop className="text-5xl pb-3 text-white" />
+          <button
+            onClick={() => handleButtonClick('/home/assign')}
+            className="flex flex-col justify-center items-center w-40 bg-[#d9d9d9] hover:bg-[#757676] text-black font-bold rounded-lg p-6 mt-4 uppercase"
+          >
+            <div className="text-center text-xl">Assign PC</div>
+          </button>
         </div>
-      )}
+
+        <div className="flex flex-col justify-center items-center bg-[#114960] p-6 rounded-xl shadow w-full h-[248px]">
+          <FaCalendarDay className="text-5xl pb-3 text-white" />
+          <button
+            onClick={() => handleButtonClick('/home/schedule')}
+            className="flex flex-col justify-center items-center w-40 bg-[#d9d9d9] hover:bg-[#757676] text-black font-bold rounded-lg p-6 mt-4 uppercase"
+          >
+            <div className="text-center text-xl">Exam Schedule</div>
+          </button>
+        </div>
+
+        <div className="flex flex-col justify-center items-center bg-[#d9d9d9] p-6 rounded-xl shadow w-full ">
+          <FaLaptop className="text-5xl pb-3 text-black" />
+          <button
+            onClick={() => handleButtonClick('/home/exam')}
+            className="flex flex-col justify-center items-center w-40 bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-6 mt-4 uppercase"
+          >
+            <div className="text-center text-xl">Add Exam</div>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
