@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import img from "./login.png";
 import { loginAdmin } from "./requests/admin";
-import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
+  const navigate= useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
@@ -28,26 +29,13 @@ const Login = ({ onLogin }) => {
     setErrors(newErrors);
 
     if (formIsValid) {
-      // Check hardcoded credentials
       if (formIsValid) {
-        // Check hardcoded credentials
-        // if (email === Email && password === Password) {
-        //   console.log('Form submitted:', { email, password });
-        //   // Reset form
-  
-         
-        //   setEmail('');
-        //   setPassword('');
-        //   setErrors({ email: '', password: '' });
-        //   onLogin();
-        // } else {
-        //   setLoginError('Invalid email or password');
-        // }
+        
         try {
           const res = await loginAdmin(email,password)
           if (res===200) {
+            navigate('/')
             
-            onLogin(true)
           }else{
             console.log(res);
           }
