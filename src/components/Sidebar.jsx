@@ -30,7 +30,7 @@ const Sidebar = ({ onLogout }) => {
 
   const Menus = [
     { title: "Home", icon: <FaHome />, path: "home", gap: true },
-    { title: "Exam Mode", icon: <FaDesktop />, path: "exam-mode" },
+    // { title: "Exam Mode", icon: <FaDesktop />, path: "exam-mode" },
     { title: "Student Management", icon: <FaUserGraduate />, path: "student-management" },
     { title: "Exam Schedule", icon: <FaCalendar />, path: "exam-schedule" },
   ];
