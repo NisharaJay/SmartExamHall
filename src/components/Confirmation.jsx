@@ -18,6 +18,7 @@ const Confirmation = ({ message, examID, onConfirmPath, onCancelPath }) => {
       });
       
       if (response.ok) {
+        
         navigate(onConfirmPath);
       } else {
         throw new Error("Failed to activate exam");
