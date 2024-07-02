@@ -1,5 +1,5 @@
 
-const localapi='https://889d-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app'
+const localapi='https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app'
 
 export const loginAdmin = async(userId,password)=>{
     try {
@@ -10,9 +10,10 @@ export const loginAdmin = async(userId,password)=>{
             "ngrok-skip-browser-warning": "69420"
           },
           body: JSON.stringify({ userId, password }),
-          credentials: 'include' // Include cookies in the request
+          credentials:'include'
         });
-    
+        const res= await response.json()
+        console.log(res);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -39,7 +40,8 @@ export const checkSession=async()=>{
     });
 
     if (response.status === 401) {
-      // console.log(response);
+      const res = await response.json()
+      console.log(res);
       throw new Error('Session expired');
     }
 
