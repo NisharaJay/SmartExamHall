@@ -19,49 +19,50 @@ import AuthComponent from "./components/AuthComponent";
 const App = () => {
   return (
     <Router>
-      <Routes>
-         <Route path="/login" element={<Login />} /> 
-        <Route element={<AuthComponent />}> 
-        <Route path="/" element={<MainLayout />}>
-          {/* Home Routes */}
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="home/exam" element={<ExamADD />} />
-          <Route path="home/register" element={<StudentForm />} />
-          <Route path="home/assign" element={<PCAssign />} />
-          <Route path="home/schedule" element={<ExamSchedule />} />
-
-          {/* Other Routes */}
-          <Route path="student-management" element={<StudentManagement />} />
-          <Route path="exam-schedule" element={<Exam />} />
-          <Route path="settings" element={<Settings />} />
-
-          {/* Confirmation Screen Route */}
-        </Route>
-
-        <Route
-          path="confirm-enter-exam-mode"
-          element={
-            <Confirmation
-              message="Are you sure you want to enter Exam Mode?"
-              onConfirmPath="/exam-mode"
-              onCancelPath="/home"
-            />
-          }
-        />
-
-        {/* Exam Mode Route */}
-        <Route
-          path="exam-mode"
-          element={
-            <ExamModeLayout>
-              <ExamMode />
-            </ExamModeLayout>
-          }
-        />
-        </Route> 
-      </Routes>
       <Toaster />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<AuthComponent />}>
+          <Route path="/" element={<MainLayout />}>
+            {/* Home Routes */}
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="home/exam" element={<ExamADD />} />
+            <Route path="home/register" element={<StudentForm />} />
+            <Route path="home/assign" element={<PCAssign />} />
+            <Route path="home/schedule" element={<ExamSchedule />} />
+
+            {/* Other Routes */}
+            <Route path="student-management" element={<StudentManagement />} />
+            <Route path="exam-schedule" element={<Exam />} />
+            <Route path="settings" element={<Settings />} />
+
+            {/* Confirmation Screen Route */}
+          </Route>
+
+          <Route
+            path="confirm-enter-exam-mode"
+            element={
+              <Confirmation
+                message="Are you sure you want to enter Exam Mode?"
+                onConfirmPath="/exam-mode"
+                onCancelPath="/home"
+              />
+            }
+          />
+
+          {/* Exam Mode Route */}
+          <Route
+            path="exam-mode"
+            element={
+              <ExamModeLayout>
+                <ExamMode />
+              </ExamModeLayout>
+            }
+          />
+        </Route>
+      </Routes>
+
     </Router>
   );
 };

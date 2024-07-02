@@ -14,9 +14,7 @@ export const loginAdmin = async(userId,password)=>{
         });
         const res= await response.json()
         console.log(res);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        
     
         const data = response.status;
         // console.log(data);

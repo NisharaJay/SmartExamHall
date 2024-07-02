@@ -30,27 +30,28 @@ const Login = ({ onLogin }) => {
     setErrors(newErrors);
 
     if (formIsValid) {
-      if (formIsValid) {
-        try {
-          const res = await loginAdmin(email, password);
-          if (res === 200) {
-            toast.success("Login successful!", { position: "top-center" });
-            navigate("/");
-          } else {
-            toast.error("Invalid credentials. Please try again.", {
-              position: "top-center",
-            });
-            console.log(res);
-          }
-        } catch (error) {
-          toast.error("Error logging in. Please try again.", {
-            position: "top-center",
-          });
-          console.log(error);
+      toast.promise(
+        loginAdmin(email, password),
+        {
+          loading: 'Logging in...',
+          success: (res) => {
+            if (res === 200) {
+              navigate('/');
+              return 'Login successful!';
+            } else if(res===401) {
+              throw new Error('Invalid credentials');
+            }else{
+              throw new Error('Unknown Error occured');
+            }
+          },
+          error: (err) => `Error logging in: ${err.message}`,
+        },
+        {
+          position: 'top-center',
         }
-      }
+      );
     }
-  };
+  }
 
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0 bg-gray-200">
@@ -66,7 +67,7 @@ const Login = ({ onLogin }) => {
           <form onSubmit={handleSubmit}>
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Email Address:
+                User ID:
               </label>
               <input
                 className={`text-gray-700 border border-gray-300 rounded-lg py-2 px-4 block w-full focus:outline-2 focus:outline-gray-300 ${
