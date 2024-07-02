@@ -19,13 +19,15 @@ export const getAttendence = async (degree,date)=>{
         body: JSON.stringify(requestBody),
         credentials: 'include'
       });
+      const data = await response.json();
+      console.log('Attendance data:', data);
   
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      const data = await response.json();
-    //   console.log('Attendance data:', data);
+      
+      
       return data;
     } catch (error) {
       console.error('Error fetching attendance:', error);
