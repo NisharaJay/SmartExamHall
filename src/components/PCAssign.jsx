@@ -48,8 +48,8 @@ const PCAssign = () => {
       >
         Back to Home
       </button>
-      <div className="flex w-full justify-center mt-[-5px]">
-        <div className="flex flex-col bg-[#114960] w-full max-w-4xl p-4 rounded-xl text-black">
+      <div className="flex w-full justify-center">
+        <div className="flex flex-col bg-[#114960] w-full max-w-4xl p-4 rounded-xl text-black mt-5">
           <div className="bg-white rounded-xl shadow-lg p-7 text-gray-600">
             {error && (
               <div className="text-red-500 text-sm font-bold mb-4">

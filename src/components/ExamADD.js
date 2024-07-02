@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const ExamADD = () => {
   const navigate = useNavigate();
 
@@ -7,6 +8,7 @@ const ExamADD = () => {
     module: "",
     date: "",
     duration: "",
+    instructions: "",
   });
 
   const handleChange = (e) => {
@@ -40,6 +42,7 @@ const ExamADD = () => {
           module: "",
           date: "",
           duration: "",
+          instructions: "",
         });
       } else {
         console.error("Failed to submit form data", response);
@@ -56,13 +59,13 @@ const ExamADD = () => {
   return (
     <div>
       <button
-        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold"
+        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-4"
         onClick={handleBack}
       >
         Back to Home
       </button>
-
-      <div className="p-6 ml-5 mr-5 mt-12 bg-gray-200 rounded-lg shadow-lg">
+      <div className="flex flex-col justify-center items-center">
+      <div className="p-5 bg-gray-200 rounded-xl shadow-lg w-full lg:w-2/3">
         <form onSubmit={handleSubmit}>
           {/* Exam Module */}
           <div className="mb-4">
@@ -121,14 +124,34 @@ const ExamADD = () => {
             />
           </div>
 
+          {/* Special Instructions */}
+          <div className="mb-4">
+            <label
+              htmlFor="instructions"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Special Instructions:
+            </label>
+            <textarea
+              id="instructions"
+              name="instructions"
+              value={formData.instructions}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
-            className=" bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 focus:outline-none focus:shadow-outline"
+            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
           >
             Submit
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

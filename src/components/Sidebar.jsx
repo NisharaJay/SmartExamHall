@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaHome, FaCalendar, FaUserGraduate, FaSignOutAlt, FaCog, FaArrowLeft, FaDesktop } from "react-icons/fa";
 
 const Sidebar = ({ onLogout }) => {
