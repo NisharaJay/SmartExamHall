@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import AddToCalendar from 'react-add-to-calendar';
 import { useNavigate } from 'react-router-dom';
 
 const ExamSchedule = () => {
@@ -46,7 +43,6 @@ const ExamSchedule = () => {
                 <th className="py-3 px-6 border-b">Subject</th>
                 <th className="py-3 px-6 border-b">Duration</th>
                 <th className="py-3 px-6 border-b">Special Instructions</th>
-                <th className="py-3 px-6 border-b">Add to Calendar</th>
                 <th className="py-3 px-6 border-b">Activate</th>
               </tr>
             </thead>
@@ -57,17 +53,6 @@ const ExamSchedule = () => {
                   <td className="py-3 px-6 border-b whitespace-nowrap">{exam.subject}</td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">{exam.duration} minutes</td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">{exam.instructions}</td>
-                  <td className="py-3 px-6 border-b whitespace-nowrap">
-                    <AddToCalendar
-                      event={{
-                        title: exam.subject,
-                        description: exam.instructions,
-                        location: 'Exam Hall',
-                        startTime: new Date(exam.date),
-                        endTime: new Date(new Date(exam.date).getTime() + exam.duration * 60000)
-                      }}
-                    />
-                  </td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
                     <button
                       onClick={() => handleActivate(exam.id)}
@@ -80,11 +65,6 @@ const ExamSchedule = () => {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Calendar component */}
-        <div className="mt-6 mx-auto" style={{ width: 'fit-content' }}>
-          <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       </div>
     </div>
