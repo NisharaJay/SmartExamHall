@@ -1,8 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const Confirmation = ({ message, examID, onConfirmPath, onCancelPath }) => {
+const Confirmation = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { message, examID, onConfirmPath, onCancelPath } = location.state;
 
   const handleConfirm = async () => {
     try {
@@ -18,7 +20,6 @@ const Confirmation = ({ message, examID, onConfirmPath, onCancelPath }) => {
       });
       
       if (response.ok) {
-        
         navigate(onConfirmPath);
       } else {
         throw new Error("Failed to activate exam");
@@ -57,4 +58,3 @@ const Confirmation = ({ message, examID, onConfirmPath, onCancelPath }) => {
 };
 
 export default Confirmation;
-
