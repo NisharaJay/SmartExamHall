@@ -60,3 +60,23 @@ export const checkSession=async()=>{
     return false;
   }
 }
+
+export const onLogout = async () => {
+  try {
+    const response = await fetch('/logout', {
+      method: 'GET',
+      credentials: 'include', // Include credentials (cookies) in the request
+    });
+
+    if (response.ok) {
+      // Logout successful, handle any post-logout actions here
+      console.log('Logout successful');
+    } else {
+      // Handle unsuccessful logout
+      const errorData = await response.json();
+      console.error('Logout failed:', errorData.message);
+    }
+  } catch (error) {
+    console.error('An error occurred during logout:', error);
+  }
+};

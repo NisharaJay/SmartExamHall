@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaHome, FaCalendar, FaUserGraduate, FaSignOutAlt, FaCog, FaArrowLeft, FaDesktop } from "react-icons/fa";
+import { onLogout } from "../requests/admin";
 
-const Sidebar = ({ onLogout }) => {
+const Sidebar = () => {
   const [open, setOpen] = useState(window.innerWidth >= 640);
   const [activePage, setActivePage] = useState("home"); // Set default active page to "home"
   const location = useLocation();
@@ -18,7 +19,7 @@ const Sidebar = ({ onLogout }) => {
 
   const handleMenuClick = (title, path) => {
     if (title === "Logout") {
-      onLogout();
+      onLogout()
       navigate("/login");
     } else if (title === "Exam Mode") {
       navigate("/confirm-enter-exam-mode");
