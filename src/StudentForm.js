@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { setMode } from "./requests/fingerprint";
 
@@ -24,7 +25,7 @@ function StudentForm() {
 
     try {
       const response = await fetch(
-        "https://e0d2-2401-dd00-10-20-38fd-4990-5ba2-38d8.ngrok-free.app/api/v1/students",
+        "https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/students",
         {
           method: "POST",
           headers: {
@@ -46,11 +47,16 @@ function StudentForm() {
         });
         const res = await setMode();
         console.log(res);
+        toast.success("Student successfully added!", {
+          position: "top-center",
+        });
       } else {
+        toast.error("Failed to register student", { position: "top-center" });
         console.error("Failed to submit form data");
       }
     } catch (error) {
       console.error("Error submitting form data:", error);
+      toast.error("Error adding student", { position: "top-center" });
     }
   };
 

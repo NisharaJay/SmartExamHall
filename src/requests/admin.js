@@ -1,5 +1,5 @@
 
-const localapi='https://889d-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app'
+const localapi='https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app'
 
 export const loginAdmin = async(userId,password)=>{
     try {
@@ -10,12 +10,11 @@ export const loginAdmin = async(userId,password)=>{
             "ngrok-skip-browser-warning": "69420"
           },
           body: JSON.stringify({ userId, password }),
-          credentials: 'include' // Include cookies in the request
+          credentials:'include'
         });
-    
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        const res= await response.json()
+        console.log(res);
+        
     
         const data = response.status;
         // console.log(data);
@@ -39,7 +38,8 @@ export const checkSession=async()=>{
     });
 
     if (response.status === 401) {
-      // console.log(response);
+      const res = await response.json()
+      console.log(res);
       throw new Error('Session expired');
     }
 
@@ -58,3 +58,23 @@ export const checkSession=async()=>{
     return false;
   }
 }
+
+export const onLogout = async () => {
+  try {
+    const response = await fetch('/logout', {
+      method: 'GET',
+      credentials: 'include', // Include credentials (cookies) in the request
+    });
+
+    if (response.ok) {
+      // Logout successful, handle any post-logout actions here
+      console.log('Logout successful');
+    } else {
+      // Handle unsuccessful logout
+      const errorData = await response.json();
+      console.error('Logout failed:', errorData.message);
+    }
+  } catch (error) {
+    console.error('An error occurred during logout:', error);
+  }
+};

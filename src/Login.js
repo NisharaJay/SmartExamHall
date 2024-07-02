@@ -1,49 +1,56 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import img from "./login.png";
 import { loginAdmin } from "./requests/admin";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
-  const navigate= useNavigate()
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '' });
-  const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [loginError, setLoginError] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formIsValid = true;
-    let newErrors = { email: '', password: '' };
-    setLoginError('');
+    let newErrors = { email: "", password: "" };
+    setLoginError("");
 
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
       formIsValid = false;
     }
 
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
       formIsValid = false;
     }
 
     setErrors(newErrors);
 
     if (formIsValid) {
-      if (formIsValid) {
-        
-        try {
-          const res = await loginAdmin(email,password)
-          if (res===200) {
-            navigate('/')
-            
-          }else{
-            console.log(res);
-          }
-       } catch (error) {
-         console.log(error);
+      toast.promise(
+        loginAdmin(email, password),
+        {
+          loading: 'Logging in...',
+          success: (res) => {
+            if (res === 200) {
+              navigate('/');
+              return 'Login successful!';
+            } else if(res===401) {
+              throw new Error('Invalid credentials');
+            }else{
+              throw new Error('Unknown Error occured');
+            }
+          },
+          error: (err) => `Error logging in: ${err.message}`,
+        },
+        {
+          position: 'top-center',
+        }
+      );
     }
-  };
-}
   }
 
   return (
@@ -60,11 +67,11 @@ const Login = ({ onLogin }) => {
           <form onSubmit={handleSubmit}>
             <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Email Address:
+                User ID:
               </label>
               <input
                 className={`text-gray-700 border border-gray-300 rounded-lg py-2 px-4 block w-full focus:outline-2 focus:outline-gray-300 ${
-                  errors.email ? 'border-red-500' : ''
+                  errors.email ? "border-red-500" : ""
                 }`}
                 type="text" // Changed to text as email is 'admin'
                 value={email}
@@ -83,7 +90,7 @@ const Login = ({ onLogin }) => {
               </div>
               <input
                 className={`text-gray-700 border border-gray-300 rounded-lg py-2 px-4 block w-full focus:outline-2 focus:outline-gray-300 ${
-                  errors.password ? 'border-red-500' : ''
+                  errors.password ? "border-red-500" : ""
                 }`}
                 type="password"
                 value={password}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaIdBadge, FaDesktop, FaCalendarDay, FaLaptop } from 'react-icons/fa';
+import { getAllStudents } from '../requests/students';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,12 +14,11 @@ const Home = () => {
 
   const fetchStudentCount = async () => {
     try {
-      const response = await fetch('your-backend-api-endpoint');
-      if (!response.ok) {
-        throw new Error('Failed to fetch student count');
+      const res = await getAllStudents()
+      if (res) {
+        setStudentCount(res); // Assuming your backend returns a count property
       }
-      const data = await response.json();
-      setStudentCount(data.count); // Assuming your backend returns a count property
+      
     } catch (error) {
       console.error('Error fetching student count:', error);
     }

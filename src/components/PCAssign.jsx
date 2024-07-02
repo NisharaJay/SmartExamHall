@@ -1,38 +1,51 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const PCAssign = () => {
   const [formData, setFormData] = useState({
-        indexNumber: ""
- 
+    indexNumber: "",
   });
 
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleAssign = async () => {
     try {
-      const response = await fetch("/api/assign-student", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(
+        "https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/fingerprints/manual",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include",
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error("Failed to assign student");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success("PC assigned successfully!", { position: "top-center" });
+        setFormData({
+          indexNumber: "",
+        });
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to assign PC");
       }
-
-      setError("");
     } catch (err) {
-      setError(err.message);
+      console.error("Error assigning PC:", err);
+      toast.error(err.message || "Error assigning PC", {
+        position: "top-center",
+      });
     }
   };
 
   const handleClear = () => {
     setFormData({
-      indexNumber: ""
+      indexNumber: "",
     });
   };
 
@@ -48,14 +61,9 @@ const PCAssign = () => {
       >
         Back to Home
       </button>
-      <div className="flex w-full justify-center mt-[-5px]">
-        <div className="flex flex-col bg-[#114960] w-full max-w-4xl p-4 rounded-xl text-black">
+      <div className="flex w-full justify-center">
+        <div className="flex flex-col bg-[#114960] w-full max-w-4xl p-4 rounded-xl text-black mt-5">
           <div className="bg-white rounded-xl shadow-lg p-7 text-gray-600">
-            {error && (
-              <div className="text-red-500 text-sm font-bold mb-4">
-                {error}
-              </div>
-            )}
             <form className="flex flex-col space-y-2">
               <div>
                 <label htmlFor="indexNumber" className="text-sm font-bold">

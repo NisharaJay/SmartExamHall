@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import { Navbar } from "./Navbar";
 import { Bottombar } from "./Bottombar";
 
-const MainLayout = ({ onLogout }) => {
+const MainLayout = () => {
   const location = useLocation();
   const getActivePageName = (pathname) => {
     switch (pathname) {
@@ -34,9 +34,9 @@ const MainLayout = ({ onLogout }) => {
 
   return (
     <div className="flex h-screen">
-      <Sidebar onLogout={onLogout} />
+      <Sidebar/>
       <div className="flex flex-col flex-1">
-        <Navbar onLogout={onLogout} activePage={activePage} />
+        <Navbar  activePage={activePage} />
         <div className="flex-1 overflow-y-auto p-4">
           <Outlet />
         </div>
