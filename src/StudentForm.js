@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { setMode } from "./requests/fingerprint";
 
@@ -46,11 +47,16 @@ function StudentForm() {
         });
         const res = await setMode();
         console.log(res);
+        toast.success("Student successfully added!", {
+          position: "top-center",
+        });
       } else {
+        toast.error("Failed to register student", { position: "top-center" });
         console.error("Failed to submit form data");
       }
     } catch (error) {
       console.error("Error submitting form data:", error);
+      toast.error("Error adding student", { position: "top-center" });
     }
   };
 

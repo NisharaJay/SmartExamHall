@@ -1,28 +1,29 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import img from "./login.png";
 import { loginAdmin } from "./requests/admin";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
-  const navigate= useNavigate()
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '' });
-  const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [loginError, setLoginError] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formIsValid = true;
-    let newErrors = { email: '', password: '' };
-    setLoginError('');
+    let newErrors = { email: "", password: "" };
+    setLoginError("");
 
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
       formIsValid = false;
     }
 
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
       formIsValid = false;
     }
 
@@ -30,21 +31,26 @@ const Login = ({ onLogin }) => {
 
     if (formIsValid) {
       if (formIsValid) {
-        
         try {
-          const res = await loginAdmin(email,password)
-          if (res===200) {
-            navigate('/')
-            
-          }else{
+          const res = await loginAdmin(email, password);
+          if (res === 200) {
+            toast.success("Login successful!", { position: "top-center" });
+            navigate("/");
+          } else {
+            toast.error("Invalid credentials. Please try again.", {
+              position: "top-center",
+            });
             console.log(res);
           }
-       } catch (error) {
-         console.log(error);
+        } catch (error) {
+          toast.error("Error logging in. Please try again.", {
+            position: "top-center",
+          });
+          console.log(error);
+        }
+      }
     }
   };
-}
-  }
 
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0 bg-gray-200">
@@ -64,7 +70,7 @@ const Login = ({ onLogin }) => {
               </label>
               <input
                 className={`text-gray-700 border border-gray-300 rounded-lg py-2 px-4 block w-full focus:outline-2 focus:outline-gray-300 ${
-                  errors.email ? 'border-red-500' : ''
+                  errors.email ? "border-red-500" : ""
                 }`}
                 type="text" // Changed to text as email is 'admin'
                 value={email}
@@ -83,7 +89,7 @@ const Login = ({ onLogin }) => {
               </div>
               <input
                 className={`text-gray-700 border border-gray-300 rounded-lg py-2 px-4 block w-full focus:outline-2 focus:outline-gray-300 ${
-                  errors.password ? 'border-red-500' : ''
+                  errors.password ? "border-red-500" : ""
                 }`}
                 type="password"
                 value={password}
