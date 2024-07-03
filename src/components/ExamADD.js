@@ -56,11 +56,39 @@ const ExamADD = () => {
   return (
     <div>
       <button
+<<<<<<< Updated upstream
         className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold"
+=======
+        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-1"
+>>>>>>> Stashed changes
         onClick={handleBack}
       >
         Back to Home
       </button>
+<<<<<<< Updated upstream
+=======
+      <div className="flex flex-col justify-center items-center">
+        <div className="p-5 bg-gray-200 rounded-xl border-[10px] border-[#114960] shadow-lg w-full lg:w-2/3">
+          <form onSubmit={handleSubmit}>
+            {/* Exam Module */}
+            <div className="mb-4">
+              <label
+                htmlFor="examModule"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Exam Module:
+              </label>
+              <input
+                type="text"
+                id="module"
+                name="module"
+                value={formData.module}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+                required
+              />
+            </div>
+>>>>>>> Stashed changes
 
       <div className="p-6 ml-5 mr-5 mt-12 bg-gray-200 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit}>
