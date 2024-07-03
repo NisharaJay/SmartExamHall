@@ -55,81 +55,82 @@ const ExamADD = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div>
       <button
         className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-1"
         onClick={handleBack}
       >
         Back to Home
       </button>
+      <div className="flex flex-1 justify-center items-center">
+        <div className="flex flex-col w-2/3 p-6 bg-gray-200 rounded-xl border-[10px] border-[#114960] shadow-lg">
+          <form onSubmit={handleSubmit}>
+            {/* Exam Module */}
+            <div className="mb-4">
+              <label
+                htmlFor="module"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Exam Module:
+              </label>
+              <input
+                type="text"
+                id="module"
+                name="module"
+                value={formData.module}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+                required
+              />
+            </div>
 
-      <div className="p-6 ml-5 mr-5 mt-12 bg-gray-200 rounded-lg shadow-lg">
-        <form onSubmit={handleSubmit}>
-          {/* Exam Module */}
-          <div className="mb-4">
-            <label
-              htmlFor="module"
-              className="block text-gray-700 font-bold mb-2"
+            {/* Exam Date */}
+            <div className="mb-4">
+              <label
+                htmlFor="date"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Exam Date:
+              </label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+                required
+              />
+            </div>
+
+            {/* Exam Duration */}
+            <div className="mb-4">
+              <label
+                htmlFor="duration"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Exam Duration (in minutes):
+              </label>
+              <input
+                type="number"
+                id="duration"
+                name="duration"
+                value={formData.duration}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+                required
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 focus:outline-none focus:shadow-outline"
             >
-              Exam Module:
-            </label>
-            <input
-              type="text"
-              id="module"
-              name="module"
-              value={formData.module}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
-              required
-            />
-          </div>
-
-          {/* Exam Date */}
-          <div className="mb-4">
-            <label
-              htmlFor="date"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Exam Date:
-            </label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
-              required
-            />
-          </div>
-
-          {/* Exam Duration */}
-          <div className="mb-4">
-            <label
-              htmlFor="duration"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Exam Duration (in minutes):
-            </label>
-            <input
-              type="number"
-              id="duration"
-              name="duration"
-              value={formData.duration}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
-              required
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 focus:outline-none focus:shadow-outline"
-          >
-            Submit
-          </button>
-        </form>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
