@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getAttendance } from "../requests/exam"; // Adjust import path as needed
 
 const StudentManagement = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -8,21 +9,13 @@ const StudentManagement = () => {
   const [relevantData, setRelevantData] = useState([]);
 
   const fetchData = async () => {
-    // Placeholder for data fetching logic
-    // replace this with an actual API call to backend
-
-    // Clear the relevant data while fetching new data
-    setRelevantData([]);
-<<<<<<< Updated upstream
-=======
     try {
-      const res = await getAttendence(selectedDegree, selectedDate);
+      const res = await getAttendance(selectedDegree, selectedDate);
       console.log(res);
       setRelevantData(res);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching attendance:", error);
     }
->>>>>>> Stashed changes
   };
 
   const handleDateChange = (date) => {
@@ -80,25 +73,7 @@ const StudentManagement = () => {
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream
-      </div>
-      <div className="flex flex-col w-full p-2">
-        <h2 className="mb-4 font-bold text-[20px]">Attendance</h2>
-        <div className="bg-white shadow-lg p-5 rounded-lg">
-          {relevantData.length > 0 ? (
-            <table className="min-w-full bg-white border">
-              <thead>
-                <tr>
-                  <th className="py-2 px-4 border-b">Name</th>
-                  <th className="py-2 px-4 border-b">Index No</th>
-                </tr>
-              </thead>
-              <tbody>
-                {relevantData.map((student, index) => (
-                  <tr key={index}>
-                    <td className="py-2 px-4 border-b">{student.name}</td>
-                    <td className="py-2 px-4 border-b">{student.indexNo}</td>
-=======
+
         <div className="flex flex-col w-full p-2">
           <h2 className="mb-4 font-bold text-[20px]">Attendance</h2>
           <div className="bg-white shadow-lg p-5 rounded-lg">
@@ -110,7 +85,6 @@ const StudentManagement = () => {
                     <th className="py-2 px-4 border-b">Index No</th>
                     <th className="py-2 px-4 border-b">Exam</th>
                     <th className="py-2 px-4 border-b">PC number</th>
->>>>>>> Stashed changes
                   </tr>
                 </thead>
                 <tbody>
