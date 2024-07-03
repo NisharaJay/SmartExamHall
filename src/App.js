@@ -9,9 +9,8 @@ import Settings from "./components/Settings";
 import ExamMode from "./components/ExamMode";
 import StudentForm from "./StudentForm";
 import PCAssign from "./components/PCAssign";
-import ExamSchedule from "./ExamSchedule";
-import Exam from "./components/ExamSchedule";
-import Confirmation from "./components/Confirmation";
+import ExamSchedule from "./components/ExamSchedule"; // Adjusted path
+import Confirmation from "./components/Confirmation"; // Adjusted path
 import ExamModeLayout from "./components/ExamModeLayout";
 import Login from "./Login";
 import AuthComponent from "./components/AuthComponent";
@@ -34,10 +33,20 @@ const App = () => {
 
             {/* Other Routes */}
             <Route path="student-management" element={<StudentManagement />} />
-            <Route path="exam-schedule" element={<Exam />} />
+            <Route path="exam-schedule" element={<ExamSchedule />} /> {/* Adjusted to use ExamSchedule */}
             <Route path="settings" element={<Settings />} />
 
             {/* Confirmation Screen Route */}
+            <Route
+              path="confirmation"
+              element={
+                <Confirmation
+                  message="Are you sure you want to activate this exam?"
+                  onConfirmPath="/"
+                  onCancelPath="/home"
+                />
+              }
+            />
           </Route>
 
           <Route
@@ -62,7 +71,6 @@ const App = () => {
           />
         </Route>
       </Routes>
-
     </Router>
   );
 };

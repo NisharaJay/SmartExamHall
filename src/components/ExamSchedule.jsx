@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import AddToCalendar from 'react-add-to-calendar';
+import { useNavigate } from 'react-router-dom';
 
 const ExamSchedule = () => {
   const [exams, setExams] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetching data from API
@@ -19,10 +18,22 @@ const ExamSchedule = () => {
     setSelectedDate(date);
   };
 
+  const handleActivate = (examID) => {
+    navigate('/confirmation', {
+      state: {
+        message: 'Are you sure you want to activate this exam?',
+        examID: examID,
+        onConfirmPath: '/', // Adjust the path as necessary
+        onCancelPath: '/',  // Adjust the path as necessary
+      }
+    });
+  };
+
   return (
-    <div className="flex bg-[#114960] items-center justify-center p-4 rounded-xl m-3">
-      <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-xl border-4">
-        <h1 className="text-3xl font-semibold text-center text-black mb-6">Exam Schedule</h1>
+    <div style={{ backgroundColor: '#114960' }} className="min-h-screen flex items-center justify-center">
+      <div className="max-w-6xl w-full mx-auto p-6 bg-gray-100 rounded-lg border-4">
+        <h1 className="text-3xl font-semibold text-center text-blue-700 mb-6">Exam Schedule</h1>
+
         {/* Table displaying exam schedule */}
         <div className="overflow-x-auto mx-8">
           <table className="min-w-full bg-white border border-gray-200">
@@ -32,7 +43,7 @@ const ExamSchedule = () => {
                 <th className="py-3 px-6 border-b">Subject</th>
                 <th className="py-3 px-6 border-b">Duration</th>
                 <th className="py-3 px-6 border-b">Special Instructions</th>
-                <th className="py-3 px-6 border-b">Add to Calendar</th>
+                <th className="py-3 px-6 border-b">Activate</th>
               </tr>
             </thead>
             <tbody>
@@ -43,25 +54,17 @@ const ExamSchedule = () => {
                   <td className="py-3 px-6 border-b whitespace-nowrap">{exam.duration} minutes</td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">{exam.instructions}</td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
-                    <AddToCalendar
-                      event={{
-                        title: exam.subject,
-                        description: exam.instructions,
-                        location: 'Exam Hall',
-                        startTime: new Date(exam.date),
-                        endTime: new Date(new Date(exam.date).getTime() + exam.duration * 60000)
-                      }}
-                    />
+                    <button
+                      onClick={() => handleActivate(exam.id)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Activate
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Calendar component */}
-        <div className="mt-6 mx-auto" style={{ width: 'fit-content' }}>
-          <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       </div>
     </div>
@@ -69,5 +72,3 @@ const ExamSchedule = () => {
 };
 
 export default ExamSchedule;
-
-
