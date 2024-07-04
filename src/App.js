@@ -62,7 +62,7 @@ const App = () => {
 
           {/* Exam Mode Route */}
           <Route
-            path="exam-mode"
+            path="exam-mode/:id"
             element={
               <ExamModeLayout>
                 <ExamMode />

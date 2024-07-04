@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAllExams } from '../requests/exams';
 
 const ExamSchedule = () => {
   const [exams, setExams] = useState([]);
@@ -7,23 +8,25 @@ const ExamSchedule = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetching data from API
-    fetch('/api/exams')
-      .then(response => response.json())
-      .then(data => setExams(data))
-      .catch(error => console.error('Error fetching exams:', error));
-  }, []);
+    // Define an async function to fetch exams
+    const fetchExams = async () => {
+      try {
+        const res = await getAllExams();
+        setExams(res.exams); // Assuming `res` contains the array of exams
+      } catch (error) {
+        console.error('Error fetching exams:', error);
+      }
+    };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+    fetchExams();
+  }, []);
 
   const handleActivate = (examID) => {
     navigate('/confirmation', {
       state: {
         message: 'Are you sure you want to activate this exam?',
         examID: examID,
-        onConfirmPath: '/', // Adjust the path as necessary
+        onConfirmPath: `/exam-mode/${examID}`, // Adjust the path as necessary
         onCancelPath: '/',  // Adjust the path as necessary
       }
     });
@@ -48,14 +51,14 @@ const ExamSchedule = () => {
             </thead>
             <tbody>
               {exams.map((exam) => (
-                <tr key={exam.id}>
-                  <td className="py-3 px-6 border-b whitespace-nowrap">{new Date(exam.date).toLocaleString()}</td>
-                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.subject}</td>
-                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.duration} minutes</td>
-                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam.instructions}</td>
+                <tr key={exam?.exam_id}>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{new Date(exam?.date).toLocaleString()}</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam?.module}</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam?.duration} minutes</td>
+                  <td className="py-3 px-6 border-b whitespace-nowrap">{exam?.instructions}</td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
                     <button
-                      onClick={() => handleActivate(exam.id)}
+                      onClick={() => handleActivate(exam.exam_id)}
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     >
                       Activate

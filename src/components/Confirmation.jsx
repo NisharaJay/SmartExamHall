@@ -5,23 +5,27 @@ const Confirmation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { message, examID, onConfirmPath, onCancelPath } = location.state;
-
+  console.log(examID);
   const handleConfirm = async () => {
     try {
-      const response = await fetch("/api/v1/exam/setActive", {
+      const response = await fetch("https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams/setActive", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420"
         },
         body: JSON.stringify({
-          examID: examID,
+          examId: examID,
           active: 1, // Set active as 1 (assuming you always want to activate)
         }),
+        credentials:'include'
       });
       
       if (response.ok) {
         navigate(onConfirmPath);
       } else {
+        const res= await response.json()
+        console.log(res);
         throw new Error("Failed to activate exam");
       }
     } catch (error) {
