@@ -36,16 +36,16 @@ const ExamSchedule = () => {
     });
   };
 
-  const handleActivate = (examID) => {
-    navigate('/confirmation', {
-      state: {
-        message: 'Are you sure you want to activate this exam?',
-        examID: examID,
-        onConfirmPath: '/', // Adjust the path as necessary
-        onCancelPath: '/', // Adjust the path as necessary
-      },
-    });
-  };
+  // const handleActivate = (examID) => {
+  //   navigate('/confirmation', {
+  //     state: {
+  //       message: 'Are you sure you want to activate this exam?',
+  //       examID: examID,
+  //       onConfirmPath: '/', // Adjust the path as necessary
+  //       onCancelPath: '/', // Adjust the path as necessary
+  //     },
+  //   });
+  // };
 
   const handleDelete = (examID) => {
     navigate('/confirmation', {
@@ -111,13 +111,13 @@ const ExamSchedule = () => {
                   </td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
                     <button
-                      onClick={() => handleActivate(exam.id)}
+                      onClick={() => handleActivate(exam.exam_id)}
                       className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mr-2"
                     >
                       Activate
                     </button>
                     <button
-                      onClick={() => handleDelete(exam.id)}
+                      onClick={() => handleDelete(exam.exam_id)}
                       className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg"
                     >
                       Delete
