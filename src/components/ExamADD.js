@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+
 const ExamADD = () => {
   const navigate = useNavigate();
 
@@ -62,18 +63,21 @@ const ExamADD = () => {
   return (
     <div>
       <button
-        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-4"
+    className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-1"
+
         onClick={handleBack}
       >
         Back to Home
       </button>
-      <div className="flex flex-col justify-center items-center">
-        <div className="p-5 bg-gray-200 rounded-xl shadow-lg w-full lg:w-2/3">
+  <div className="flex flex-1 justify-center items-center">
+        <div className="flex flex-col w-2/3 p-6 bg-gray-200 rounded-xl border-[10px] border-[#114960] shadow-lg">
+
           <form onSubmit={handleSubmit}>
             {/* Exam Module */}
             <div className="mb-4">
               <label
-                htmlFor="examModule"
+ htmlFor="module"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Module:
@@ -92,7 +96,8 @@ const ExamADD = () => {
             {/* Exam Date */}
             <div className="mb-4">
               <label
-                htmlFor="examDate"
+  htmlFor="date"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Date:
@@ -111,7 +116,8 @@ const ExamADD = () => {
             {/* Exam Duration */}
             <div className="mb-4">
               <label
-                htmlFor="examDuration"
+ htmlFor="duration"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Duration (in minutes):
@@ -126,9 +132,7 @@ const ExamADD = () => {
                 required
               />
             </div>
-
-            {/* Special Instructions */}
-            <div className="mb-4">
+   <div className="mb-4">
               <label
                 htmlFor="instructions"
                 className="block text-gray-700 font-bold mb-2"
@@ -150,6 +154,8 @@ const ExamADD = () => {
             <button
               type="submit"
               className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+
+
             >
               Submit
             </button>

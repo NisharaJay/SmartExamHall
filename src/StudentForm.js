@@ -74,7 +74,7 @@ function StudentForm() {
       >
         Back to Home
       </button>
-      <div className="max-w-3xl mx-auto mt-6 p-6 bg-gray-200 rounded-lg shadow-xl">
+      <div className="max-w-3xl mx-auto mt-4 p-6 bg-gray-200 rounded-xl border-[10px] border-[#114960] shadow-xl">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
