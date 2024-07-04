@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
 
 const ExamADD = () => {
   const navigate = useNavigate();
@@ -8,6 +10,7 @@ const ExamADD = () => {
     module: "",
     date: "",
     duration: "",
+    instructions: "",
   });
 
   const handleChange = (e) => {
@@ -23,7 +26,7 @@ const ExamADD = () => {
 
     try {
       const response = await fetch(
-        "https://e0d2-2401-dd00-10-20-38fd-4990-5ba2-38d8.ngrok-free.app/api/v1/exams",
+        "https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams",
         {
           method: "POST",
           headers: {
@@ -35,17 +38,20 @@ const ExamADD = () => {
       );
 
       if (response.ok) {
-        console.log("Form data successfully submitted!");
+        toast.success("Exam successfully added!", { position: "top-center" });
         // Reset form after submission if needed
         setFormData({
           module: "",
           date: "",
           duration: "",
+          instructions: "",
         });
       } else {
+        toast.error("Failed to add exam", { position: "top-center" });
         console.error("Failed to submit form data", response);
       }
     } catch (error) {
+      toast.error("Error adding exam", { position: "top-center" });
       console.error("Error submitting form data:", error);
     }
   };
@@ -57,18 +63,21 @@ const ExamADD = () => {
   return (
     <div>
       <button
-        className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-1"
+    className="bg-[#114960] hover:bg-[#0f2f3b] text-white p-2 rounded-lg font-bold mb-1"
+
         onClick={handleBack}
       >
         Back to Home
       </button>
-      <div className="flex flex-1 justify-center items-center">
+  <div className="flex flex-1 justify-center items-center">
         <div className="flex flex-col w-2/3 p-6 bg-gray-200 rounded-xl border-[10px] border-[#114960] shadow-lg">
+
           <form onSubmit={handleSubmit}>
             {/* Exam Module */}
             <div className="mb-4">
               <label
-                htmlFor="module"
+ htmlFor="module"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Module:
@@ -87,7 +96,8 @@ const ExamADD = () => {
             {/* Exam Date */}
             <div className="mb-4">
               <label
-                htmlFor="date"
+  htmlFor="date"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Date:
@@ -106,7 +116,8 @@ const ExamADD = () => {
             {/* Exam Duration */}
             <div className="mb-4">
               <label
-                htmlFor="duration"
+ htmlFor="duration"
+
                 className="block text-gray-700 font-bold mb-2"
               >
                 Exam Duration (in minutes):
@@ -121,11 +132,30 @@ const ExamADD = () => {
                 required
               />
             </div>
+   <div className="mb-4">
+              <label
+                htmlFor="instructions"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Special Instructions:
+              </label>
+              <textarea
+                id="instructions"
+                name="instructions"
+                value={formData.instructions}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded-lg w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-gray-700"
+                rows="3"
+                required
+              ></textarea>
+            </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg mt-4 focus:outline-none focus:shadow-outline"
+              className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+
+
             >
               Submit
             </button>

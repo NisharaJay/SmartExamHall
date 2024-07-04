@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FaIdBadge, FaCalendarDay, FaLaptop } from "react-icons/fa";
 import { getAllStudents } from "../requests/students";
 
+
+
 const Home = () => {
   const navigate = useNavigate();
   const [studentCount, setStudentCount] = useState(0); // State to hold student count
@@ -14,10 +16,11 @@ const Home = () => {
 
   const fetchStudentCount = async () => {
     try {
-      const res = await getAllStudents();
+       const res = await getAllStudents()
       if (res) {
         setStudentCount(res); // Assuming your backend returns a count property
       }
+
     } catch (error) {
       console.error("Error fetching student count:", error);
     }

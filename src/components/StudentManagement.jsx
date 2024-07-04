@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { getAttendance } from "../requests/exam"; // Adjust import path as needed
+import { getAttendence } from "../requests/exams";
+
 
 const StudentManagement = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -9,12 +10,18 @@ const StudentManagement = () => {
   const [relevantData, setRelevantData] = useState([]);
 
   const fetchData = async () => {
+     // Placeholder for data fetching logic
+    // replace this with an actual API call to backend
+
+    // Clear the relevant data while fetching new data
+    setRelevantData([]);
     try {
-      const res = await getAttendance(selectedDegree, selectedDate);
+      const res = await getAttendence(selectedDegree,selectedDate)
       console.log(res);
-      setRelevantData(res);
+      setRelevantData(res)
     } catch (error) {
-      console.error("Error fetching attendance:", error);
+      console.log(error);
+
     }
   };
 
@@ -74,7 +81,8 @@ const StudentManagement = () => {
           </div>
         </div>
 
-        <div className="flex flex-col w-full p-2">
+                    
+                     <div className="flex flex-col w-full p-2">
           <h2 className="mb-4 font-bold text-[20px]">Attendance</h2>
           <div className="bg-white shadow-lg p-5 rounded-lg">
             {relevantData.length > 0 ? (
