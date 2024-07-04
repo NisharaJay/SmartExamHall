@@ -12,8 +12,7 @@ const ExamMode = () => {
   const getColor = (active) => (active ? '#00FF00' : '#808080');
 
   const fetchData = async () => {
-    // Placeholder for data fetching logic
-    // Replace this with an actual API call to backend
+
     try {
       // fetching exam information
       // const response = await fetch("/api/exam-info");
@@ -112,46 +111,52 @@ const ExamMode = () => {
         <div className="m-3 bg-[#D9D9D9] rounded-lg mt-4 p-5 px-8">
         <h2 className="mb-4 font-bold text-[22px]">PC Assignment</h2>
         <div className="bg-white rounded-lg p-4">
-          {pcs.length > 0 ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              height="100%"
-              viewBox="0 0 600 75" // Adjust viewBox as necessary
-            >
-              {pcs.map((pc, index) => (
+        {pcs.length > 0 ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 600 150" // Adjust viewBox as necessary
+          >
+            {pcs.map((pc, index) => {
+              const colIndex = index % 10;
+              const rowIndex = Math.floor(index / 10);
+              const isLeft = colIndex < 5;
+
+              return (
                 <g key={index}>
                   <svg
-                    x={(index % 8) * 75}
-                    y={Math.floor(index / 8) * 40} // Adjust position
-                    width="60"
+                    x={isLeft ? colIndex * 60 : colIndex * 60 + 50} // Adjust horizontal position for right column
+                    y={rowIndex * 30} // Adjust vertical position
+                    width="50"
                     height="30" // Adjust size
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke-width="1.5"
-                    stroke={getColor(pc.active)}
+                    strokeWidth="1.5"
+                    stroke={getColor(pc.assigned)}
                     className="size-6"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"
                     />
                   </svg>
                   <text
-                    x={(index % 8) * 75 + 30} // Centered text horizontally
-                    y={Math.floor(index / 8) * 40 + 15} // Centered text vertically
-                    fontSize="12" // Adjusted font size
-                    fontWeight="bold"
+                    x={isLeft ? colIndex * 60 + 25 : colIndex * 60 + 75} // Adjust text position for right column
+                    y={rowIndex * 30 + 15} // Adjust vertical position
+                    fontSize="7" // Smaller font size
+                    fontWeight="normal" // Less bold
                     fill="black"
                     textAnchor="middle"
                     alignmentBaseline="middle"
                   >
-                    {pc.name}
+                    {pc.id}
                   </text>
                 </g>
-              ))}
+              );
+            })}
             </svg>
           ) : (
             <p>No PCs available.</p>
