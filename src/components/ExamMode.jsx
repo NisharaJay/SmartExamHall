@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getAllPcs } from "../requests/pcs.js";
+import { getExamByID } from "../requests/exams.js";
+import { useParams } from "react-router-dom";
 
 const ExamMode = () => {
   const [relevantData, setRelevantData] = useState([]);
   const [pcs, setPcs] = useState([]);
+  const [remainingTime, setRemainingTime] = useState(0);
+  const {id} = useParams()
   const [examInfo, setExamInfo] = useState({
     examName: "",
-    degree: "",
     duration: "",
   });
   const getColor = (active) => (active ? '#00FF00' : '#808080');
@@ -15,16 +18,25 @@ const ExamMode = () => {
 
     try {
       // fetching exam information
-      // const response = await fetch("/api/exam-info");
-      // if (!response.ok) {
-      //   throw new Error("Failed to fetch exam information");
-      // }
-      // const data = await response.json();
-      // setExamInfo({
-      //   examName: data.examName,
-      //   degree: data.degree,
-      //   duration: data.duration,
-      // });
+      const res= await getExamByID(id)
+      console.log((res));
+      setExamInfo({
+        examName: res.module,
+        duration: res.duration,
+      });
+      const durationInSeconds = res.duration * 60;
+      const savedStartTime = localStorage.getItem(`examStartTime_${id}`);
+      const currentTime = Date.now();
+      let timeElapsed;
+
+      if (savedStartTime) {
+        timeElapsed = Math.floor((currentTime - parseInt(savedStartTime, 10)) / 1000);
+      } else {
+        localStorage.setItem(`examStartTime_${id}`, currentTime);
+        timeElapsed = 0;
+      }
+      const remaining = durationInSeconds - timeElapsed;
+      setRemainingTime(remaining > 0 ? remaining : 0);
 
       // // fetching relevant data for exam attendance
       // const attendanceResponse = await fetch("/api/exam-attendance");
@@ -49,6 +61,22 @@ const ExamMode = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (remainingTime > 0) {
+      const timer = setInterval(() => {
+        setRemainingTime((prevTime) => prevTime - 1);
+      }, 1000);
+
+      return () => clearInterval(timer); // Clear interval on component unmount
+    }
+  }, [remainingTime]);
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
   return (
     <div>
       <div className="flex justify-center items-center mb-5">
@@ -65,19 +93,21 @@ const ExamMode = () => {
       </div>
       
         <div className="flex flex-col bg-[#D9D9D9] rounded-lg mt-2 p-5 m-3">
-          <div className="flex justify-center items-center mb-5">
-            <div className="flex flex-wrap p-1 rounded-2xl bg-[#114960] text-black text-[16px]">
+          <div className="flex justify-center items-center mb-5 w-full">
+            <div className="flex flex-wrap p-1 rounded-2xl bg-[#114960] text-black text-[16px] w-2/3">
               <p className="m-2 bg-gray-200 rounded-xl p-3 flex-1">
-                <strong className="text-[17px]">Exam:</strong> <br />
+                <strong className="text-[17px]">Exam Module:</strong> <br />
                 {examInfo.examName || "No exam information available"}
               </p>
               <p className="m-2 bg-gray-200 rounded-xl p-3 flex-1">
                 <strong className="text-[17px]">Exam Duration:</strong> <br />
-                {examInfo.duration || "No exam information available"}
+                {examInfo.duration || "No exam information available"} minutes
               </p>
               <p className="m-2 bg-gray-200 rounded-xl p-3 flex-1">
-                <strong className="text-[17px]">Degree:</strong> <br />
-                {examInfo.degree || "No exam information available"}
+                <strong className="text-[17px]">Remaining time:</strong> <br />
+                <strong className="text-[20px] text-red-700 font-semibold p-2 rounded-md ">
+                {formatTime(remainingTime) || "0:00"}
+              </strong>
               </p>
             </div>
           </div>
@@ -97,7 +127,7 @@ const ExamMode = () => {
                     <tr key={index}>
                       <td className="py-2 px-4 border-b">{student.name}</td>
                       <td className="py-2 px-4 border-b">{student.indexNo}</td>
-                      <td className="py-2 px-4 border-b">{student.uptime}</td>
+                     {/* <td className="py-2 px-4 border-b">{student.uptime}</td>*/}
                     </tr>
                   ))}
                 </tbody>

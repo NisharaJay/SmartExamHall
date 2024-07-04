@@ -29,6 +29,7 @@ const ExamModeLayout = ({ children }) => {
       });
 
       if (response.ok) {
+        localStorage.removeItem(`examStartTime_${id}`);
         navigate("/home");
       } else {
         const res= await response.json()

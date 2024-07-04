@@ -60,3 +60,28 @@ export const getAllExams = async () => {
     return null; // Return null or handle the error as needed
   }
 };
+
+export const getExamByID = async (id) => {
+  const url = `https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams/${id}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+         "ngrok-skip-browser-warning": "69420"
+      },
+      credentials:'include'
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching exam data:', error);
+    return null; // Return null or handle the error as needed
+  }
+};
