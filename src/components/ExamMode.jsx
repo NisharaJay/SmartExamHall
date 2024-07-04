@@ -64,8 +64,8 @@ const ExamMode = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-2/3 bg-[#D9D9D9] rounded-lg mt-2 p-5">
+      
+        <div className="flex flex-col bg-[#D9D9D9] rounded-lg mt-2 p-5 m-3">
           <div className="flex justify-center items-center mb-5">
             <div className="flex flex-wrap p-1 rounded-2xl bg-[#114960] text-black text-[16px]">
               <p className="m-2 bg-gray-200 rounded-xl p-3 flex-1">
@@ -109,7 +109,7 @@ const ExamMode = () => {
           </div>
         </div>
 
-        <div className="ml-5 w-1/3 bg-[#D9D9D9] rounded-lg mt-2 p-5">
+        <div className="m-3 bg-[#D9D9D9] rounded-lg mt-4 p-5 px-8">
         <h2 className="mb-4 font-bold text-[22px]">PC Assignment</h2>
         <div className="bg-white rounded-lg p-4">
           {pcs.length > 0 ? (
@@ -117,15 +117,15 @@ const ExamMode = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
               height="100%"
-              viewBox="0 0 400 200" // Adjust viewBox as necessary
+              viewBox="0 0 600 75" // Adjust viewBox as necessary
             >
               {pcs.map((pc, index) => (
                 <g key={index}>
                   <svg
-                    x={(index % 4) * 100}
-                    y={Math.floor(index / 4) * 50} // Adjust position
-                    width="80"
-                    height="40" // Adjust size
+                    x={(index % 8) * 75}
+                    y={Math.floor(index / 8) * 40} // Adjust position
+                    width="60"
+                    height="30" // Adjust size
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke-width="1.5"
@@ -140,8 +140,8 @@ const ExamMode = () => {
                     />
                   </svg>
                   <text
-                    x={(index % 4) * 100 + 40} // Centered text horizontally
-                    y={Math.floor(index / 4) * 50 + 25} // Centered text vertically
+                    x={(index % 8) * 75 + 30} // Centered text horizontally
+                    y={Math.floor(index / 8) * 40 + 15} // Centered text vertically
                     fontSize="12" // Adjusted font size
                     fontWeight="bold"
                     fill="black"
@@ -159,7 +159,7 @@ const ExamMode = () => {
         </div>
       </div>
       </div>
-    </div>
+   
   );
 };
 
