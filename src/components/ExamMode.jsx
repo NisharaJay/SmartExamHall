@@ -146,19 +146,19 @@ const ExamMode = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
             height="100%"
-            viewBox="0 0 600 150" // Adjust viewBox as necessary
+            viewBox="0 0 600 50" // Adjust viewBox as necessary
           >
             {pcs.map((pc, index) => {
-              const colIndex = index % 10;
-              const rowIndex = Math.floor(index / 10);
-              const isLeft = colIndex < 5;
+              const colIndex = index % 5;
+              //const rowIndex = Math.floor(index / 10);
+              const isLeft = index < 5;
 
               return (
                 <g key={index}>
                   <svg
-                    x={isLeft ? colIndex * 60 : colIndex * 60 + 50} // Adjust horizontal position for right column
-                    y={rowIndex * 30} // Adjust vertical position
-                    width="50"
+                    x={isLeft ? colIndex * 50 : colIndex * 50 + 300} // Adjust horizontal position for right column
+                    y={0} // single row
+                    width="40"
                     height="30" // Adjust size
                     viewBox="0 0 24 24"
                     fill="none"
@@ -174,8 +174,8 @@ const ExamMode = () => {
                     />
                   </svg>
                   <text
-                    x={isLeft ? colIndex * 60 + 25 : colIndex * 60 + 75} // Adjust text position for right column
-                    y={rowIndex * 30 + 15} // Adjust vertical position
+                    x={isLeft ? colIndex * 50 + 20 : colIndex * 50 + 320} // Adjust text position for right column
+                    y={12} // single row
                     fontSize="7" // Smaller font size
                     fontWeight="normal" // Less bold
                     fill="black"
