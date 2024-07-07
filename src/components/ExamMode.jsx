@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllPcs } from "../requests/pcs.js";
+import { getAllPcs, revokePC } from "../requests/pcs.js";
 import { getExamByID, manualAttendence } from "../requests/exams.js";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -24,7 +24,7 @@ const ExamMode = () => {
     try {
       const pcsResponse = await getAllPcs();
       setPcs(pcsResponse.pcs);
-      console.log("pcs", pcsResponse.pcs);
+      // console.log("pcs", pcsResponse.pcs);
     } catch (error) {
       console.error("Error fetching PCs:", error);
     }
@@ -111,13 +111,24 @@ const ExamMode = () => {
     }
   };
 
-  const handleConfirm = () => {
-    setPcs(
-      pcs.map((pc) =>
-        pc.id === selectedPc.id ? { ...pc, assigned: !pc.assigned } : pc
-      )
-    );
-    setShowConfirm(false);
+  const handleConfirm = async(pcId) => {
+    // console.log(pcId);
+    try {
+      // setPcs(
+      //   pcs.map((pc) =>
+      //     pc.id === selectedPc.id ? { ...pc, assigned: !pc.assigned } : pc
+      //   )
+      // );
+      const res = await revokePC(pcId)
+      if (res.statusCode===200) {
+        toast.success(`revoked ${pcId} successfully`)
+      } else {
+        toast.error(`Error occured:${res.statusCode}`)
+      }
+      setShowConfirm(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleCancel = () => {
@@ -273,12 +284,12 @@ const ExamMode = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-5 rounded-xl shadow-lg">
             <p className="mb-4 font-bold p-2 text-lg">
-              Are you sure to revoke PC {selectedPc.pcId}?
+              Are you sure to revoke PC {selectedPc.id}?
             </p>
             <div className="flex justify-between">
               <button
                 className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold py-2 px-4 rounded-lg"
-                onClick={handleConfirm}
+                onClick={()=>handleConfirm(selectedPc.id)}
               >
                 Confirm
               </button>

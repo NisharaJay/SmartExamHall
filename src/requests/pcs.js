@@ -14,7 +14,7 @@ export const getAllPcs = async () => {
     }
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching PCs:', error);
@@ -43,6 +43,33 @@ export const resetAllPcs = async () => {
     return response.status;
   } catch (error) {
     console.error('Error resetting all PCs:', error);
+    throw error;
+  }
+};
+
+
+export const revokePC = async (pcId) => {
+  try {
+    const response = await fetch('https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/fingerprints/revoke', { // Replace with your actual API URL
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ pcId })
+    });
+
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error! status: ${response.status}`);
+    // }
+
+    const responseData = await response.json();
+    console.log(responseData);
+    return {
+      statusCode: response.status,
+      data: responseData
+    };
+  } catch (error) {
+    console.error('Error revoking PC:', error);
     throw error;
   }
 };
