@@ -3,6 +3,7 @@ import { getAllPcs, revokePC } from "../requests/pcs.js";
 import { getExamByID, manualAttendence } from "../requests/exams.js";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { getCurrentAttendence } from "../requests/students.js";
 
 const ExamMode = () => {
   const [relevantData, setRelevantData] = useState([]);
@@ -24,6 +25,10 @@ const ExamMode = () => {
     try {
       const pcsResponse = await getAllPcs();
       setPcs(pcsResponse.pcs);
+
+      const stuResponse = await getCurrentAttendence(id)
+      // console.log(stuResponse);
+      setRelevantData(stuResponse)
       // console.log("pcs", pcsResponse.pcs);
     } catch (error) {
       console.error("Error fetching PCs:", error);
@@ -183,15 +188,15 @@ const ExamMode = () => {
                 <tr>
                   <th className="py-2 px-4 border-b">Name</th>
                   <th className="py-2 px-4 border-b">Index No</th>
-                  <th className="py-2 px-4 border-b">PC Uptime</th>
+                  <th className="py-2 px-4 border-b">PC ID</th>
                 </tr>
               </thead>
               <tbody>
-                {relevantData.map((student, index) => (
+                {relevantData.map((item, index) => (
                   <tr key={index}>
-                    <td className="py-2 px-4 border-b">{student.name}</td>
-                    <td className="py-2 px-4 border-b">{student.indexNo}</td>
-                    {/* <td className="py-2 px-4 border-b">{student.uptime}</td>*/}
+                    <td className="py-2 px-4 border-b">{item.student.name}</td>
+                    <td className="py-2 px-4 border-b">{item.student.studentId}</td>
+                     <td className="py-2 px-4 border-b">{item.pc.pcId}</td>
                   </tr>
                 ))}
               </tbody>
