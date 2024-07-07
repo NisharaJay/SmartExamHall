@@ -42,7 +42,7 @@ const Home = () => {
         <div className="bg-[#d9d9d9] p-6 rounded-xl shadow flex flex-col justify-center items-center py-8">
           <button
             onClick={() => handleButtonClick("/home/register")}
-            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-lg p-4 md:p-6 uppercase flex flex-col items-center"
+            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold rounded-xl p-4 md:p-6 uppercase flex flex-col items-center"
           >
             <FaIdBadge className="text-5xl text-white mb-2 md:mb-3" />
             <span className="text-xl mt-2">Register</span>
@@ -56,7 +56,7 @@ const Home = () => {
           <FaCalendarDay className="text-6xl pb-3 text-white" />
           <button
             onClick={() => handleButtonClick("/home/schedule")}
-            className="bg-[#d9d9d9] hover:bg-[#757676] text-black text-xl mt-3 font-bold rounded-lg p-4 md:p-6 uppercase flex flex-col items-center"
+            className="bg-[#d9d9d9] hover:bg-[#757676] text-black text-xl mt-3 font-bold rounded-xl p-4 md:p-6 uppercase flex flex-col items-center"
           >
             Exam Schedule
           </button>
@@ -69,7 +69,7 @@ const Home = () => {
           <FaLaptop className="text-6xl pb-3 text-black" />
           <button
             onClick={() => handleButtonClick("/home/exam")}
-            className="bg-[#114960] hover:bg-[#0f2f3b] text-white text-xl mt-3 font-bold rounded-lg p-4 md:p-6 uppercase flex flex-col items-center"
+            className="bg-[#114960] hover:bg-[#0f2f3b] text-white text-xl mt-3 font-bold rounded-xl p-4 md:p-6 uppercase flex flex-col items-center"
           >
             Add Exam
           </button>
