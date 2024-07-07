@@ -26,7 +26,7 @@ const ExamModeLayout = ({ children }) => {
           examId: id,
           active: 0, // Set active as 0 to deactivate the exam
         }),
-        credentials:'include'
+        credentials:'include' 
       });
 
       if (response.ok) {
