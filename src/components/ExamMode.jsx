@@ -87,6 +87,10 @@ const ExamMode = () => {
     }
   };
 
+  const handleStart = () => {
+    // Handle start button click
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -141,9 +145,12 @@ const ExamMode = () => {
     setSelectedPc(null);
   };
 
+ 
+
   return (
     <div>
-      <div className="flex justify-center items-center mb-5">
+      <div className="relative mb-5">
+      <div className="flex justify-center items-center">
         <div className="flex flex-wrap bg-[#d9d9d9] p-3 rounded-lg">
           <input
             type="text"
@@ -153,13 +160,20 @@ const ExamMode = () => {
             onChange={(e) => setIndexNumber(e.target.value)}
           />
           <button
-            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold px-4 py-2 rounded-lg"
+            className="bg-[#114960] hover:bg-[#0f2f3b] text-white font-bold px-4 py-2 rounded-lg mr-2"
             onClick={handleAssign}
           >
             Assign
           </button>
         </div>
       </div>
+      <button
+        className="absolute right-0 top-0 mt-5 mr-5 bg-[#114960] hover:bg-[#0f2f3b] text-white text-lg font-bold px-6 py-2 rounded-lg"
+        onClick={handleStart}
+      >
+        Start
+      </button>
+    </div>
 
       <div className="flex flex-col bg-[#D9D9D9] rounded-lg mt-2 p-5 m-3">
         <div className="flex justify-center items-center mb-5 w-full">
