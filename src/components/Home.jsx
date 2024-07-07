@@ -28,7 +28,7 @@ const Home = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-32">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-32 mt-4">
       {/* Total Students */}
       <div className="bg-[#114960] rounded-xl p-4">
         <div className="bg-[#d9d9d9] h-full p-6 rounded-xl shadow flex flex-col justify-center items-center">
@@ -51,7 +51,7 @@ const Home = () => {
       </div>
 
       {/* Exam Schedule */}
-      <div className="bg-[#d9d9d9] rounded-xl p-4">
+      
         <div className="bg-[#114960] p-6 rounded-xl shadow flex flex-col justify-center items-center py-12">
           <FaCalendarDay className="text-6xl pb-3 text-white" />
           <button
@@ -61,21 +61,21 @@ const Home = () => {
             Exam Schedule
           </button>
         </div>
-      </div>
+      
 
       {/* Add Exam */}
-      <div className="bg-[#d9d9d9] rounded-xl p-4">
-        <div className="bg-[#114960] p-6 rounded-xl shadow flex flex-col justify-center items-center py-12">
-          <FaLaptop className="text-6xl pb-3 text-white" />
+      
+        <div className="bg-[#d9d9d9] p-6 rounded-xl shadow flex flex-col justify-center items-center">
+          <FaLaptop className="text-6xl pb-3 text-black" />
           <button
             onClick={() => handleButtonClick("/home/exam")}
-            className="bg-[#d9d9d9] hover:bg-[#757676] text-black text-xl mt-3 font-bold rounded-lg p-4 md:p-6 uppercase flex flex-col items-center"
+            className="bg-[#114960] hover:bg-[#0f2f3b] text-white text-xl mt-3 font-bold rounded-lg p-4 md:p-6 uppercase flex flex-col items-center"
           >
             Add Exam
           </button>
         </div>
       </div>
-    </div>
+   
   );
 };
 
