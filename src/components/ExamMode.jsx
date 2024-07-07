@@ -273,7 +273,7 @@ const ExamMode = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-5 rounded-xl shadow-lg">
             <p className="mb-4 font-bold p-2 text-lg">
-              Are you sure to revoke PC {selectedPc.id}?
+              Are you sure to revoke PC {selectedPc.pcId}?
             </p>
             <div className="flex justify-between">
               <button
@@ -292,6 +292,7 @@ const ExamMode = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };
