@@ -85,3 +85,37 @@ export const getExamByID = async (id) => {
     return null; // Return null or handle the error as needed
   }
 };
+
+
+
+export const manualAttendence = async (stuId) => {
+  const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/fingerprints/manual';
+
+  const requestBody = {
+    indexNumber: stuId,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "ngrok-skip-browser-warning": "69420"
+      },
+      body: JSON.stringify(requestBody),
+      credentials:'include'
+    });
+
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error! status: ${response.status}`);
+    // }
+
+    // const data = await response.json();
+    // console.log('Response data:', data);
+
+    return response;
+  } catch (error) {
+    console.error('Error during manual attendance call:', error);
+    throw error;
+  }
+};

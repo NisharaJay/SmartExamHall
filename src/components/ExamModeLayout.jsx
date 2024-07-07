@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ConfirmationDialog from "./ConfirmationDialog";
 import { useParams } from "react-router-dom";
+import { resetAllPcs } from "../requests/pcs";
 
 const ExamModeLayout = ({ children }) => {
   const navigate = useNavigate();
@@ -30,7 +31,11 @@ const ExamModeLayout = ({ children }) => {
 
       if (response.ok) {
         localStorage.removeItem(`examStartTime_${id}`);
-        navigate("/home");
+        const res = await resetAllPcs()
+        if (res===200) {
+          navigate("/home");
+        }
+    
       } else {
         const res= await response.json()
         console.log(res);

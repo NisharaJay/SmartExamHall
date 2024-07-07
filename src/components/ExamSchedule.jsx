@@ -96,12 +96,12 @@ const ExamSchedule = () => {
             </thead>
             <tbody>
               {exams.map((exam) => (
-                  <tr key={exam.id}>
+                  <tr key={exam.exam_id}>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
                     {new Date(exam.date).toLocaleString()}
                   </td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
-                    {exam.subject}
+                    {exam.module}
                   </td>
                   <td className="py-3 px-6 border-b whitespace-nowrap">
                     {exam.duration} minutes

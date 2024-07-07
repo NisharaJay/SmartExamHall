@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { setMode } from "../requests/fingerprint";
 
 const Confirmation = () => {
   const navigate = useNavigate();
@@ -20,8 +21,11 @@ const Confirmation = () => {
         }),
         credentials:'include'
       });
-      
+      const res = await response.json()
+      console.log(res);
       if (response.ok) {
+        
+        await setMode(2);
         navigate(onConfirmPath);
       } else {
         const res= await response.json()

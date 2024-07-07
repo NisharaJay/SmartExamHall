@@ -45,7 +45,7 @@ function StudentForm() {
           degree: "IT",
           batch: "",
         });
-        const res = await setMode();
+        const res = await setMode(1);
         console.log(res);
         toast.success("Student successfully added!", {
           position: "top-center",
