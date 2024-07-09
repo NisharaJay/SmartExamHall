@@ -37,7 +37,7 @@ const Sidebar = () => {
   ];
 
   const Menu = [
-    { title: "Settings", icon: <FaCog />, path: "settings" },
+    // { title: "Settings", icon: <FaCog />, path: "settings" },
     { title: "Logout", icon: <FaSignOutAlt />, path: null },
   ];
 
@@ -83,7 +83,7 @@ const Sidebar = () => {
               {Menus.map((menu, index) => (
                 <li
                   key={index}
-                  className={`flex rounded-md p-1.5 cursor-pointer hover:bg-black text-black hover:text-white font-semibold items-center gap-x-4 mt-2 ${activePage === menu.path && "bg-black text-white"}`}
+                  className={`flex rounded-lg p-1.5 cursor-pointer hover:bg-black text-black hover:text-white font-semibold items-center gap-x-4 mt-2 ${activePage === menu.path && "bg-black text-white"}`}
                   onClick={() => handleMenuClick(menu.title, menu.path)}
                 >
                   <span className="pl-1.5 text-lg">{menu.icon}</span>
@@ -99,7 +99,7 @@ const Sidebar = () => {
               {Menu.map((menu, index) => (
                 <li
                   key={index}
-                  className={`flex rounded-md p-1.5 cursor-pointer hover:bg-black text-black hover:text-white font-semibold items-center gap-x-4 mt-2 ${activePage === menu.path && "bg-black text-white"}`}
+                  className={`flex rounded-lg p-1.5 cursor-pointer hover:bg-black text-black hover:text-white font-semibold items-center gap-x-4 mt-2 ${activePage === menu.path && "bg-black text-white"}`}
                   onClick={() => handleMenuClick(menu.title, menu.path)}
                 >
                   <span className="pl-1.5 text-lg">{menu.icon}</span>

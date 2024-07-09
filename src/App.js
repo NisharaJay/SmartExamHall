@@ -5,7 +5,6 @@ import MainLayout from "./components/MainLayout";
 import Home from "./components/Home";
 import ExamADD from "./components/ExamADD";
 import StudentManagement from "./components/StudentManagement";
-import Settings from "./components/Settings";
 import ExamMode from "./components/ExamMode";
 import StudentForm from "./StudentForm";
 import PCAssign from "./components/PCAssign";
@@ -34,7 +33,7 @@ const App = () => {
             {/* Other Routes */}
             <Route path="student-management" element={<StudentManagement />} />
             <Route path="exam-schedule" element={<ExamSchedule />} /> {/* Adjusted to use ExamSchedule */}
-            <Route path="settings" element={<Settings />} />
+            
 
             {/* Confirmation Screen Route */}
             <Route

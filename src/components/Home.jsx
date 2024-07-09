@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-32 mt-4">
       {/* Total Students */}
-      <div className="bg-[#114960] rounded-xl p-4">
+      <div className="bg-[#114960] rounded-xl p-3">
         <div className="bg-[#d9d9d9] h-full p-6 rounded-xl shadow flex flex-col justify-center items-center">
           <div className="font-semibold text-2xl mb-2">Total Students</div>
           <h1 className="text-3xl">{studentCount}</h1>
@@ -38,7 +38,7 @@ const Home = () => {
       </div>
 
       {/* Register Button */}
-      <div className="bg-[#114960] rounded-xl p-4">
+      <div className="bg-[#114960] rounded-xl p-3">
         <div className="bg-[#d9d9d9] p-6 rounded-xl shadow flex flex-col justify-center items-center py-8">
           <button
             onClick={() => handleButtonClick("/home/register")}
