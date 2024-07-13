@@ -1,5 +1,5 @@
 export const getAllStudents = async () => {
-    const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/students';
+    const url = 'https://bcca-112-135-76-91.ngrok-free.app/api/v1/students';
     
     try {
       const response = await fetch(url, {
@@ -24,7 +24,7 @@ export const getAllStudents = async () => {
   };
 
   export const getCurrentAttendence = async (examId) => {
-    const url = `https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/attendence/getcurrent`;
+    const url = `https://bcca-112-135-76-91.ngrok-free.app/api/v1/attendence/getcurrent`;
   
     try {
       const response = await fetch(url, {

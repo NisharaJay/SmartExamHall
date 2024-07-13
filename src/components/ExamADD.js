@@ -26,7 +26,7 @@ const ExamADD = () => {
 
     try {
       const response = await fetch(
-        "https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams",
+        "https://bcca-112-135-76-91.ngrok-free.app/api/v1/exams",
         {
           method: "POST",
           headers: {

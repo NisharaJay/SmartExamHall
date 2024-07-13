@@ -9,7 +9,7 @@ const Confirmation = () => {
   console.log(examID);
   const handleConfirm = async () => {
     try {
-      const response = await fetch("https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams/setActive", {
+      const response = await fetch("https://bcca-112-135-76-91.ngrok-free.app/api/v1/exams/setActive", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

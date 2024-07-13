@@ -1,6 +1,6 @@
 export const getAllPcs = async () => {
   try {
-    const response = await fetch('https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/pcs', {
+    const response = await fetch('https://bcca-112-135-76-91.ngrok-free.app/api/v1/pcs', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export const getAllPcs = async () => {
 
 export const resetAllPcs = async () => {
   try {
-    const response = await fetch('https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/pcs', {
+    const response = await fetch('https://bcca-112-135-76-91.ngrok-free.app/api/v1/pcs', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -34,9 +34,9 @@ export const resetAllPcs = async () => {
       credentials:'include'
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error! status: ${response.status}`);
+    // }
 
     const data = await response.json();
     console.log('Reset all PCs response:', data);
@@ -50,7 +50,7 @@ export const resetAllPcs = async () => {
 
 export const revokePC = async (pcId) => {
   try {
-    const response = await fetch('https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/fingerprints/revoke', { // Replace with your actual API URL
+    const response = await fetch('https://bcca-112-135-76-91.ngrok-free.app/api/v1/fingerprints/revoke', { // Replace with your actual API URL
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

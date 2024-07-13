@@ -1,7 +1,7 @@
 
 
 export const getAttendence = async (degree,date)=>{
-    const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/attendence';
+    const url = 'https://bcca-112-135-76-91.ngrok-free.app/api/v1/attendence';
 
     const requestBody = {
       degree: degree,
@@ -36,7 +36,7 @@ export const getAttendence = async (degree,date)=>{
 }
 
 export const getAllExams = async () => {
-  const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams';
+  const url = 'https://bcca-112-135-76-91.ngrok-free.app/api/v1/exams';
   
   try {
     const response = await fetch(url, {
@@ -62,7 +62,7 @@ export const getAllExams = async () => {
 };
 
 export const getExamByID = async (id) => {
-  const url = `https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/exams/${id}`;
+  const url = `https://bcca-112-135-76-91.ngrok-free.app/api/v1/exams/${id}`;
 
   try {
     const response = await fetch(url, {
@@ -89,7 +89,7 @@ export const getExamByID = async (id) => {
 
 
 export const manualAttendence = async (stuId) => {
-  const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/api/v1/fingerprints/manual';
+  const url = 'https://bcca-112-135-76-91.ngrok-free.app/api/v1/fingerprints/manual';
 
   const requestBody = {
     indexNumber: stuId,
@@ -121,7 +121,7 @@ export const manualAttendence = async (stuId) => {
 };
 
 export const startExam = async () => {
-  const url = 'https://d206-2402-d000-a400-4266-458e-cb07-e111-57aa.ngrok-free.app/startExam';
+  const url = 'https://bcca-112-135-76-91.ngrok-free.app/startExam';
 
   try {
     const response = await fetch(url, {
